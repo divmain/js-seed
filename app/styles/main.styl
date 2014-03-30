@@ -1,0 +1,62 @@
+.place-holder
+    width: 100%
+    margin-top: 100px
+    text-align: center
+
+.loader
+    display: inline-block;
+    width: 150px;
+    height: 100px;
+    text-align: center;
+    background-color: #333;
+
+    padding: 16px;
+    border-radius: 8px;
+
+    .l, .m, .r
+        background-color: #31BDE0;
+        border-radius: 4px;
+        display: inline-block;
+        height: 100%;
+        margin: auto 4px;
+        width: 20%;
+        opacity: 0.6;
+
+        animation-iteration-count: infinite;
+        animation-direction: linear;
+        transform: scale(1,0.7);
+        transition-timing-function: ease-out;
+
+    .l, .r
+        animation-duration: 2.6s
+        animation-name: pulse-outer
+
+    .r
+        animation-delay: 1.3s
+
+    .m
+        animation-duration: 1.3s;
+        animation-name: pulse-inner;
+        animation-delay: 0.65s;
+
+@keyframes pulse-outer
+    0%
+        transform: scale(1,0.7);
+        opacity:0.6; 
+    10%
+        transform:scale(1,1.0);
+        opacity:1
+    40%
+        transform:scale(1,0.7);
+        opacity:0.6
+
+@keyframes pulse-inner
+    0%
+        transform: scale(1,0.7);
+        opacity:0.6;
+    20%
+        transform:scale(1,1.0);
+        opacity:1
+    80%
+        transform:scale(1,0.7);
+        opacity:0.6
