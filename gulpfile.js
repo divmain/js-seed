@@ -192,3 +192,32 @@ gulp.task("build:js-dev", function (callback) {
     callback();
   });
 });
+
+/**
+ * Test Tasks
+ */
+
+gulp.task("test", function (callback) {
+  var webpackConf = _.extend({}, config.webpack, {
+    entry: {
+      test: "mocha!./spec/tests.js"
+    },
+    output: {
+      path: path.join(config.destFullPath, "spec"),
+      publicPath: path.join(config.dest, "spec"),
+      filename: "[name].bundle.js"
+    }
+  });
+
+  webpack(webpackConf, function (err, stats) {
+    if (err) {
+      throw new gutil.PluginError("build:js-dev", err);
+    }
+    gutil.log("[build:js-dev]", stats.toString({
+      colors: true
+    }));
+    callback();
+  });
+});
+
+

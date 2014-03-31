@@ -28,6 +28,9 @@
     "jshint-stylish": "^0.1.5",
     "gulp-autoprefixer": "0.0.6",
     "mocha": "^1.18.2",
-    "mocha-loader": "^0.6.3"
+    "mocha-loader": "^0.6.3",
+    "chai": "^1.9.1",
+    "assertion-error": "^1.0.0",
+    "deep-eql": "^0.1.3"
   }
 }
