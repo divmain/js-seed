@@ -1,5 +1,7 @@
 document.write("<div id=\"mocha\"></div>");
 
+window.jQuery = window.$ = require("jquery");
+
 require("!style!css!mocha/mocha.css");
 require("!script!mocha/mocha.js");
 require("!script!sinon/pkg/sinon.js");
