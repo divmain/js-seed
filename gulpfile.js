@@ -82,7 +82,12 @@ gulp.task("default", ["watch"], function () {});
  * Composite Tasks
  */
 
-gulp.task("build", ["lint", "test-phantom", "clean", "copy", "build:css", "build:js"]);
+gulp.task("build", ["lint", "test-phantom"], function () {
+  gulp.run("clean");
+  gulp.run("copy");
+  gulp.run("build:css");
+  gulp.run("build:js");
+});
 
 gulp.task("build-dev", ["clean", "copy", "build:css", "build:js-dev"]);
 
