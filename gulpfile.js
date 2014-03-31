@@ -50,7 +50,7 @@ config.webpack = {
   },
   output: {
     path: path.join(config.destFullPath, config.js),
-    publicPath: path.join(config.dest, config.js),
+    publicPath: config.js + "/",
     filename: "[name].bundle.js",
     chunkFilename: "[id].bundle.js",
     sourceMapFilename: "[file].map"
@@ -241,7 +241,7 @@ gulp.task("build:test", function (callback) {
     },
     output: {
       path: config.testFullPath,
-      publicPath: config.test,
+      publicPath: "/",
       filename: "[name].bundle.js"
     },
     devtool: "sourcemap",
