@@ -1,5 +1,6 @@
-var $ = require("jquery");
-var _ = require("underscore");
+require.ensure(["jquery", "underscore"], function (require) {
 
-_();
-$();
+  _();
+  $();
+
+});
