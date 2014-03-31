@@ -6,20 +6,23 @@ This project is agnostic towards the specifics of your browser implementation or
 
 ## Stack
 
-- [gulp](http://gulpjs.com/) - a task runner and build tool
-- [webpack](http://webpack.github.io/) - a module bundler that accepts/outputs CommonJS/AMD/UMD
-- [mocha](http://visionmedia.github.io/mocha/) - test framework
-- [Chai](http://chaijs.com/) - assertion framework
-- [Sinon.JS](http://sinonjs.org) - spies, stubs, and mocks
-- [Lo-Dash](http://lodash.com) - a utility library, an alternative to Underscore.js
-- [Stylus](http://learnboost.github.io/stylus/) - an expressive CSS pre-processor
+- Build
+    - [gulp](http://gulpjs.com/) - a task runner and build tool
+    - [webpack](http://webpack.github.io/) - a module bundler that accepts/outputs CommonJS/AMD/UMD
+- Tests
+    - [mocha](http://visionmedia.github.io/mocha/) - test framework
+    - [Chai](http://chaijs.com/) - assertion framework
+    - [Sinon.JS](http://sinonjs.org) - spies, stubs, and mocks
+    - [sinon-chai](https://github.com/domenic/sinon-chai) - Chai assertions for Sinon objects
+    - [chai-jquery](https://github.com/chaijs/chai-jquery) - Chai assertions for jQuery objects
+    - [mocha-phantomjs](https://github.com/metaskills/mocha-phantomjs) - enables front-end testing from the terminal
+- Libraries
+    - [Lo-Dash](http://lodash.com) - a utility library, an alternative to Underscore.js
+    - [jQuery](http://jquery.com/)
+- CSS
+    - [Stylus](http://learnboost.github.io/stylus/) - an expressive CSS pre-processor
     - [Autoprefixer](https://github.com/ai/autoprefixer) - automatic vendor prefix handling
     - [Axis](http://roots.cx/axis/) - powerful Stylus library
-
-### Helpers
-
-- [sinon-chai](https://github.com/domenic/sinon-chai) - Chai assertions for Sinon objects
-- [chai-jquery](https://github.com/chaijs/chai-jquery) - Chai assertions for jQuery objects
 
 ## Tasks
 
