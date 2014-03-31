@@ -6,17 +6,17 @@ This project is agnostic towards the specifics of your browser implementation or
 
 ## Stack
 
-- [gulp](http://gulpjs.com/)
-- [webpack](http://webpack.github.io/)
-- [Mocha](http://visionmedia.github.io/mocha/)
-- [Chai](http://chaijs.com/)
-- [Sinon.JS](http://sinonjs.org)
-- [Lodash](http://lodash.com)
+- [gulp](http://gulpjs.com/) - a task runner and build tool
+- [webpack](http://webpack.github.io/) - a module bundler that accepts/outputs CommonJS/AMD/UMD
+- [Mocha](http://visionmedia.github.io/mocha/) - test framework
+- [Chai](http://chaijs.com/) - assertion framework
+- [Sinon.JS](http://sinonjs.org) - spies, stubs, and mocks
+- [Lo-Dash](http://lodash.com) - a utility library, an alternative to Underscore.js
 
 ### Helpers
 
-- [sinon-chai](https://github.com/domenic/sinon-chai)
-- [chai-jquery](https://github.com/chaijs/chai-jquery)
+- [sinon-chai](https://github.com/domenic/sinon-chai) - Chai assertions for Sinon objects
+- [chai-jquery](https://github.com/chaijs/chai-jquery) - Chai assertions for jQuery objects
 
 ## Tasks
 
