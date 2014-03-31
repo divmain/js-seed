@@ -7,6 +7,7 @@ var path = require("path");
 
 var gulp = require("gulp");
 var gutil = require("gulp-util");
+
 var clean = require("gulp-clean");
 var stylus = require("gulp-stylus");
 var prefix = require("gulp-autoprefixer");
@@ -14,6 +15,7 @@ var connect = require("gulp-connect");
 var gutil = require("gulp-util");
 var jshint = require("gulp-jshint");
 var stylish = require("jshint-stylish");
+
 var mochaPhantomJS = require("gulp-mocha-phantomjs");
 
 var webpack = require("webpack");
@@ -74,15 +76,10 @@ config.webpack = {
 
 
 /**
- * Primary Task
+ * Composite Tasks
  */
 
 gulp.task("default", ["watch"], function () {});
-
-
-/**
- * Composite Tasks
- */
 
 gulp.task("build", ["lint", "test-phantom"], function () {
   gulp.run("clean");
