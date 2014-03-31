@@ -121,7 +121,7 @@ gulp.task("clean", function () {
 });
 
 gulp.task("copy", function () {
-  gulp.src(
+  return gulp.src(
     path.join(config.srcFullPath, config.assets, "**/*"),
     { base: path.join(config.srcFullPath, config.assets) }
     )
@@ -129,7 +129,7 @@ gulp.task("copy", function () {
 });
 
 gulp.task("lint", function () {
-  gulp.src([
+  return gulp.src([
     path.join(config.srcFullPath, "js", "**/*.js"),
     path.join(config.srcFullPath, "spec/tests/**/*.js"),
     path.join(config.root, "*.js"),
@@ -159,7 +159,7 @@ gulp.task("server:test", connect.server({
  */
 
 gulp.task("build:css", function () {
-  gulp.src(path.join(config.srcFullPath, config.styles, "*"))
+  return gulp.src(path.join(config.srcFullPath, config.styles, "*"))
     .pipe(stylus({
       use: ["axis-css"],
       set: ["compress"],
