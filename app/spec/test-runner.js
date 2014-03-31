@@ -10,6 +10,8 @@ window.expect = chai.expect;
 var sinonChai = require("sinon-chai");
 chai.use(sinonChai);
 
+require("!script!chai-jquery/chai-jquery.js");
+
 mocha.setup("bdd");
 
 require("./tests/test-entry");
