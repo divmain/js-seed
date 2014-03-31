@@ -135,7 +135,8 @@ gulp.task("lint", function () {
     path.join(config.root, "*.js"),
   ])
     .pipe(jshint(path.join(config.root, ".jshintrc")))
-    .pipe(jshint.reporter(stylish));
+    .pipe(jshint.reporter(stylish))
+    .pipe(jshint.reporter("fail"));
 });
 
 gulp.task("server", connect.server({
