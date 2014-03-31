@@ -84,7 +84,7 @@ gulp.task("default", ["watch"], function () {});
 
 gulp.task("build", ["lint", "test-phantom", "clean", "copy", "build:css", "build:js"]);
 
-gulp.task("build-dev", ["lint", "clean", "copy", "build:css", "build:js-dev"]);
+gulp.task("build-dev", ["clean", "copy", "build:css", "build:js-dev"]);
 
 gulp.task("watch", ["build-dev"], function () {
   gulp.watch(path.join(config.srcFullPath, "**/*"), function () {
