@@ -23,7 +23,7 @@ This project is agnostic towards the specifics of your browser implementation or
 You can find the tasks you'll run directly in the **Composite Tasks** section of `gulpfile.js`.  Here is a quick run-through of the options available to you.
 
 | Invocation          | Description                                                                   |
-| -:                  | -                                                                             |
+| ----:                  | ----                                                                             |
 | `gulp`              | Runs `gulp watch`.                                                            |
 | `gulp build`        | Lints and tests your source.  Then does a clean build of assets, CSS, and JS. |
 | `gulp build-dev`    | Does a clean build of assets, CSS, and JS (with source maps).                 |
@@ -35,7 +35,7 @@ You can find the tasks you'll run directly in the **Composite Tasks** section of
 ## Project Layout
 
 | File/Directory               | Description                                                                 |
-| -                            | -                                                                           |
+| ----                            | ----                                                                           |
 | gulpfile.js                  | Defines all tasks for gulp and webpack.                                     |
 | app/                         | All source files go here.                                                   |
 | app/assets/                  | Static files go here and are copied into destination dir on build.          |
