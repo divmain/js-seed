@@ -14,6 +14,7 @@ var connect = require("gulp-connect");
 var gutil = require("gulp-util");
 var jshint = require("gulp-jshint");
 var stylish = require("jshint-stylish");
+var mochaPhantomJS = require("gulp-mocha-phantomjs");
 
 var webpack = require("webpack");
 
@@ -81,7 +82,7 @@ gulp.task("default", ["watch"], function () {});
  * Composite Tasks
  */
 
-gulp.task("build", ["lint", "clean", "copy", "build:css", "build:js"]);
+gulp.task("build", ["lint", "test-phantom", "clean", "copy", "build:css", "build:js"]);
 
 gulp.task("build-dev", ["lint", "clean", "copy", "build:css", "build:js-dev"]);
 
@@ -101,6 +102,12 @@ gulp.task("test", ["build:test", "server:test"], function () {
   gulp.watch(path.join(config.srcFullPath, "**/*"), function () {
     gulp.run("build-dev");
   });
+});
+
+gulp.task("test-phantom", ["build:test"], function () {
+  return gulp
+    .src("dist/spec/test-runner.html")
+    .pipe(mochaPhantomJS());
 });
 
 
@@ -124,6 +131,7 @@ gulp.task("copy", function () {
 gulp.task("lint", function () {
   gulp.src([
     path.join(config.srcFullPath, "js", "**/*.js"),
+    path.join(config.srcFullPath, "spec/tests/**/*.js"),
     path.join(config.root, "*.js"),
   ])
     .pipe(jshint(path.join(config.root, ".jshintrc")))
@@ -213,9 +221,12 @@ gulp.task("build:js-dev", function (callback) {
  */
 
 gulp.task("build:test", function (callback) {
+  gulp.src(path.join(config.srcFullPath, "spec/test-runner.html"))
+    .pipe(gulp.dest(path.join(config.destFullPath, "spec")));
+
   var webpackConf = _.extend({}, config.webpack, {
     entry: {
-      test: "mocha!./spec/tests.js"
+      test: "./spec/test-runner.js"
     },
     output: {
       path: path.join(config.destFullPath, "spec"),
@@ -226,13 +237,10 @@ gulp.task("build:test", function (callback) {
     debug: true
   });
 
-  webpack(webpackConf, function (err, stats) {
+  webpack(webpackConf, function (err) {
     if (err) {
       throw new gutil.PluginError("build:js-dev", err);
     }
-    gutil.log("[build:js-dev]", stats.toString({
-      colors: true
-    }));
     callback();
   });
 });
