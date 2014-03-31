@@ -12,6 +12,9 @@ This project is agnostic towards the specifics of your browser implementation or
 - [Chai](http://chaijs.com/) - assertion framework
 - [Sinon.JS](http://sinonjs.org) - spies, stubs, and mocks
 - [Lo-Dash](http://lodash.com) - a utility library, an alternative to Underscore.js
+- [Stylus](http://learnboost.github.io/stylus/) - an expressive CSS pre-processor
+    - [Autoprefixer](https://github.com/ai/autoprefixer) - automatic vendor prefix handling
+    - [Axis](http://roots.cx/axis/) - powerful Stylus library
 
 ### Helpers
 
