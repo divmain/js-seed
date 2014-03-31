@@ -33,7 +33,8 @@ var config = {
   assets: "assets",
   styles: "styles",
 
-  port: 3000
+  port: 3000,
+  testPort: 3001
 };
 
 config.webpack = {
@@ -77,6 +78,33 @@ gulp.task("default", ["watch"], function () {});
 
 
 /**
+ * Composite Tasks
+ */
+
+gulp.task("build", ["lint", "clean", "copy", "build:css", "build:js"]);
+
+gulp.task("build-dev", ["lint", "clean", "copy", "build:css", "build:js-dev"]);
+
+gulp.task("watch", ["build-dev"], function () {
+  gulp.watch(path.join(config.srcFullPath, "**/*"), function () {
+    gulp.run("build-dev");
+  });
+});
+
+gulp.task("watch-reload", ["build-dev", "server"], function () {
+  gulp.watch(path.join(config.srcFullPath, "**/*"), function () {
+    gulp.run("build-dev");
+  });
+});
+
+gulp.task("test", ["build:test", "server:test"], function () {
+  gulp.watch(path.join(config.srcFullPath, "**/*"), function () {
+    gulp.run("build-dev");
+  });
+});
+
+
+/**
  * Component Tasks
  */
 
@@ -102,36 +130,24 @@ gulp.task("lint", function () {
     .pipe(jshint.reporter(stylish));
 });
 
-gulp.task("connect", connect.server({
-  root: ["dist"],
+gulp.task("server", connect.server({
+  root: [config.destFullPath],
   livereload: true,
   port: config.port
 }));
 
-
-/**
- * Composite Tasks
- */
-
-gulp.task("build", ["lint", "clean", "copy", "build:css", "build:js"]);
-
-gulp.task("build-dev", ["lint", "clean", "copy", "build:css", "build:js-dev"]);
-
-gulp.task("watch", ["build-dev"], function () {
-  gulp.watch(path.join(config.srcFullPath, "**/*"), function () {
-    gulp.run("build-dev");
-  });
-});
-
-gulp.task("watch-reload", ["build-dev", "connect"], function () {
-  gulp.watch(path.join(config.srcFullPath, "**/*"), function () {
-    gulp.run("build-dev");
-  });
-});
+gulp.task("server:test", connect.server({
+  root: [config.destFullPath],
+  open: {
+    file: "spec/test-runner.html"
+  },
+  livereload: true,
+  port: config.testPort
+}));
 
 
 /**
- * CSS Tasks
+ * CSS
  */
 
 gulp.task("build:css", function () {
@@ -147,7 +163,7 @@ gulp.task("build:css", function () {
 
 
 /**
- * JS Tasks
+ * JS
  */
 
 gulp.task("build:js", function (callback) {
@@ -193,10 +209,10 @@ gulp.task("build:js-dev", function (callback) {
 });
 
 /**
- * Test Tasks
+ * Tests
  */
 
-gulp.task("test", function (callback) {
+gulp.task("build:test", function (callback) {
   var webpackConf = _.extend({}, config.webpack, {
     entry: {
       test: "mocha!./spec/tests.js"
@@ -205,7 +221,9 @@ gulp.task("test", function (callback) {
       path: path.join(config.destFullPath, "spec"),
       publicPath: path.join(config.dest, "spec"),
       filename: "[name].bundle.js"
-    }
+    },
+    devtool: "sourcemap",
+    debug: true
   });
 
   webpack(webpackConf, function (err, stats) {
@@ -218,5 +236,3 @@ gulp.task("test", function (callback) {
     callback();
   });
 });
-
-
