@@ -8,7 +8,7 @@ This project is agnostic towards the specifics of your browser implementation or
 
 - [gulp](http://gulpjs.com/) - a task runner and build tool
 - [webpack](http://webpack.github.io/) - a module bundler that accepts/outputs CommonJS/AMD/UMD
-- [Mocha](http://visionmedia.github.io/mocha/) - test framework
+- [mocha](http://visionmedia.github.io/mocha/) - test framework
 - [Chai](http://chaijs.com/) - assertion framework
 - [Sinon.JS](http://sinonjs.org) - spies, stubs, and mocks
 - [Lo-Dash](http://lodash.com) - a utility library, an alternative to Underscore.js
