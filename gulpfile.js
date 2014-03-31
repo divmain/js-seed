@@ -26,8 +26,10 @@ var webpack = require("webpack");
 var config = {
   src: "app",
   dest: "dist",
+  test: "dist-test",
   srcFullPath: path.join(__dirname, "app"),
   destFullPath: path.join(__dirname, "dist"),
+  testFullPath: path.join(__dirname, "dist-test"),
   root: __dirname,
 
   js: "js",
@@ -105,7 +107,7 @@ gulp.task("watch-reload", ["build-dev", "server"], function () {
 
 gulp.task("test", ["build:test", "server:test"], function () {
   gulp.watch(path.join(config.srcFullPath, "**/*"), function () {
-    gulp.run("build-dev");
+    gulp.run("build:test");
   });
 });
 
@@ -151,9 +153,9 @@ gulp.task("server", connect.server({
 }));
 
 gulp.task("server:test", connect.server({
-  root: [config.destFullPath],
+  root: [config.testFullPath],
   open: {
-    file: "spec/test-runner.html"
+    file: "test-runner.html"
   },
   livereload: true,
   port: config.testPort
@@ -228,15 +230,15 @@ gulp.task("build:js-dev", function (callback) {
 
 gulp.task("build:test", function (callback) {
   gulp.src(path.join(config.srcFullPath, "spec/test-runner.html"))
-    .pipe(gulp.dest(path.join(config.destFullPath, "spec")));
+    .pipe(gulp.dest(config.testFullPath));
 
   var webpackConf = _.extend({}, config.webpack, {
     entry: {
       test: "./spec/test-runner.js"
     },
     output: {
-      path: path.join(config.destFullPath, "spec"),
-      publicPath: path.join(config.dest, "spec"),
+      path: config.testFullPath,
+      publicPath: config.test,
       filename: "[name].bundle.js"
     },
     devtool: "sourcemap",
@@ -245,7 +247,7 @@ gulp.task("build:test", function (callback) {
 
   webpack(webpackConf, function (err) {
     if (err) {
-      throw new gutil.PluginError("build:js-dev", err);
+      throw new gutil.PluginError("build:test", err);
     }
     callback();
   });
