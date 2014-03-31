@@ -12,7 +12,6 @@ var stylus = require("gulp-stylus");
 var prefix = require("gulp-autoprefixer");
 var connect = require("gulp-connect");
 var gutil = require("gulp-util");
-// var inject = require("gulp-inject");
 var jshint = require("gulp-jshint");
 var stylish = require("jshint-stylish");
 
