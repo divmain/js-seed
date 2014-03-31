@@ -91,15 +91,11 @@ gulp.task("build", ["lint", "test-phantom"], function () {
 gulp.task("build-dev", ["clean", "copy", "build:css", "build:js-dev"]);
 
 gulp.task("watch", ["build-dev"], function () {
-  gulp.watch(path.join(config.srcFullPath, "**/*"), function () {
-    gulp.run("build-dev");
-  });
+  gulp.watch(path.join(config.srcFullPath, "**/*"), ["build-dev"]);
 });
 
-gulp.task("watch-reload", ["build-dev", "server"], function () {
-  gulp.watch(path.join(config.srcFullPath, "**/*"), function () {
-    gulp.run("build-dev");
-  });
+gulp.task("reload", ["build-dev", "server"], function () {
+  gulp.watch(path.join(config.srcFullPath, "**/*"), ["build-dev", "reload:go"]);
 });
 
 gulp.task("test", ["build:test", "server:test"], function () {
@@ -161,6 +157,11 @@ gulp.task("server:test", function () {
     livereload: true,
     port: config.testPort
   }).apply(this.arguments);
+});
+
+gulp.task("reload:go", function () {
+  return gulp.src(path.join(config.srcFullPath, "**/*"))
+    .pipe(connect.reload());
 });
 
 
