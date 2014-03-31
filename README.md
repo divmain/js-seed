@@ -23,14 +23,14 @@ This project is agnostic towards the specifics of your browser implementation or
 You can find the tasks you'll run directly in the **Composite Tasks** section of `gulpfile.js`.  Here is a quick run-through of the options available to you.
 
 | Invocation          | Description                                                                   |
-| ----:                  | ----                                                                             |
+| ----:               | ----                                                                          |
 | `gulp`              | Runs `gulp watch`.                                                            |
 | `gulp build`        | Lints and tests your source.  Then does a clean build of assets, CSS, and JS. |
 | `gulp build-dev`    | Does a clean build of assets, CSS, and JS (with source maps).                 |
-| `gulp watch`        | Runs build-dev any time a file changes in your app directory.                 |
+| `gulp watch`        | Runs `gulp build-dev` any time a file changes in your app directory.          |
 | `gulp reload`       | Same as `gulp watch`, except it triggers a page refresh using LiveReload.     |
 | `gulp test`         | Builds necessary files and launches a browser window to run the test suite.   |
-| `gulp test-phantom` | Runs test suite in the terminal, using Mocha-PhantomJS                                                                              |
+| `gulp test-phantom` | Runs test suite in the terminal, using Mocha-PhantomJS.                       |
 
 ## Project Layout
 
