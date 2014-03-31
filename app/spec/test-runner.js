@@ -4,8 +4,11 @@ require("!style!css!mocha/mocha.css");
 require("!script!mocha/mocha.js");
 require("!script!sinon/pkg/sinon.js");
 
-window.expect = require("chai").expect;
+window.chai = require("chai");
+window.expect = chai.expect;
 
+var sinonChai = require("sinon-chai");
+chai.use(sinonChai);
 
 mocha.setup("bdd");
 
