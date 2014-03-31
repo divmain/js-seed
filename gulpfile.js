@@ -143,20 +143,25 @@ gulp.task("lint", function () {
     .pipe(jshint.reporter("fail"));
 });
 
-gulp.task("server", connect.server({
-  root: [config.destFullPath],
-  livereload: true,
-  port: config.port
-}));
+gulp.task("server", function () {
+  return connect.server({
+    root: [config.destFullPath],
+    open: {},
+    livereload: true,
+    port: config.port
+  }).apply(this, arguments);
+});
 
-gulp.task("server:test", connect.server({
-  root: [config.testFullPath],
-  open: {
-    file: "test-runner.html"
-  },
-  livereload: true,
-  port: config.testPort
-}));
+gulp.task("server:test", function () {
+  return connect.server({
+    root: [config.testFullPath],
+    open: {
+      file: "test-runner.html"
+    },
+    livereload: true,
+    port: config.testPort
+  }).apply(this.arguments);
+});
 
 
 /**
