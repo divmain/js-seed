@@ -17,6 +17,7 @@ var jshint = require("gulp-jshint");
 var stylish = require("jshint-stylish");
 
 var mochaPhantomJS = require("gulp-mocha-phantomjs");
+var karma = require("gulp-karma");
 
 var webpack = require("webpack");
 
@@ -255,3 +256,12 @@ gulp.task("build:test", function (callback) {
     callback();
   });
 });
+
+gulp.task("test:karma", function () {
+  return gulp.src("app/spec/tests/**/*")
+    .pipe(karma({
+      configFile: "karma.conf.js",
+      action: "run"
+    }));
+});
+
