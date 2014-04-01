@@ -16,6 +16,7 @@ This project is agnostic towards the specifics of your browser implementation or
     - [sinon-chai](https://github.com/domenic/sinon-chai) - Chai assertions for Sinon objects
     - [chai-jquery](https://github.com/chaijs/chai-jquery) - Chai assertions for jQuery objects
     - [mocha-phantomjs](https://github.com/metaskills/mocha-phantomjs) - enables front-end testing from the terminal
+    - [Karma](http://karma-runner.github.io/) - automated testing in multiple browsers (Chrome, Firefox, Sarafi enabled by default)
 - Libraries
     - [Lo-Dash](http://lodash.com) - a utility library, an alternative to Underscore.js
     - [jQuery](http://jquery.com/)
