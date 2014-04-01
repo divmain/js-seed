@@ -38,6 +38,7 @@ You can find the tasks you'll run directly in the **Composite Tasks** section of
 | `gulp reload`       | Same as `gulp watch`, except it triggers a page refresh using LiveReload.     |
 | `gulp test`         | Builds necessary files and launches a browser window to run the test suite.   |
 | `gulp test-phantom` | Runs test suite in the terminal, using Mocha-PhantomJS.                       |
+| `gulp test-karma`   | Runs test suite in multiple browsers from the terminal, using Karma.                                                                              |
 
 ## Project Layout
 
