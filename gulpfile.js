@@ -111,6 +111,14 @@ gulp.task("test-phantom", ["build:test"], function () {
     .pipe(mochaPhantomJS());
 });
 
+gulp.task("test-karma", function () {
+  return gulp.src("app/spec/tests/**/*")
+    .pipe(karma({
+      configFile: "karma.conf.js",
+      action: "run"
+    }));
+});
+
 
 /**
  * Component Tasks
@@ -256,12 +264,3 @@ gulp.task("build:test", function (callback) {
     callback();
   });
 });
-
-gulp.task("test:karma", function () {
-  return gulp.src("app/spec/tests/**/*")
-    .pipe(karma({
-      configFile: "karma.conf.js",
-      action: "run"
-    }));
-});
-
