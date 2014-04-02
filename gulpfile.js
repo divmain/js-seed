@@ -63,7 +63,9 @@ config.webpack = {
   },
   resolve: {
     alias: {
-      "underscore": "lodash"
+      "_": "lodash",
+      "underscore": "lodash",
+      "app": config.srcFullPath
     }
   },
   plugins: [
