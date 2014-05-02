@@ -1,4 +1,4 @@
-require.ensure(["lodash", "jquery"], function (_, $) {
+require(["lodash", "jquery"], function (_, $) {
 
   _();
   $();
