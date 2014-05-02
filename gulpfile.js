@@ -91,7 +91,11 @@ gulp.task("build", ["lint", "test-phantom"], function () {
   gulp.run("build:js");
 });
 
-gulp.task("build-dev", ["clean", "copy", "build:css", "build:js-dev"]);
+gulp.task("build-dev", ["clean"], function () {
+  gulp.run("copy");
+  gulp.run("build:css");
+  gulp.run("build:js-dev");
+});
 
 gulp.task("watch", ["build-dev"], function () {
   gulp.watch(path.join(config.srcFullPath, "**/*"), ["build-dev"]);
