@@ -1,4 +1,4 @@
-require.ensure(["jquery", "underscore"], function (require) {
+require.ensure(["lodash", "jquery"], function (_, $) {
 
   _();
   $();
