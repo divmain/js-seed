@@ -191,7 +191,6 @@ gulp.task("reload:go", function () {
 gulp.task("build:css", function () {
   return gulp.src(path.join(config.srcFullPath, config.styles, "*"))
     .pipe(stylus({
-      use: ["axis-css"],
       set: ["compress"],
       define: { "ie8": true }
     }))

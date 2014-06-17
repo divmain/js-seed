@@ -23,7 +23,6 @@ This project is agnostic towards the specifics of your browser implementation or
 - CSS
     - [Stylus](http://learnboost.github.io/stylus/) - an expressive CSS pre-processor
     - [Autoprefixer](https://github.com/ai/autoprefixer) - automatic vendor prefix handling
-    - [Axis](http://roots.cx/axis/) - powerful Stylus library
 
 ## Tasks
 
