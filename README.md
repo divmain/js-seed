@@ -41,19 +41,19 @@ You can find the tasks you'll run directly in the **Composite Tasks** section of
 
 ## Project Layout
 
-| File/Directory               | Description                                                                 |
-| ----                            | ----                                                                           |
-| gulpfile.js                  | Defines all tasks for gulp and webpack.                                     |
-| app/                         | All source files go here.                                                   |
-| app/assets/                  | Static files go here and are copied into destination dir on build.          |
-| app/js/                      | All your JS files go here.                                                  |
-| app/js/main.js               | Main entry point into your application.                                     |
-| app/spec/tests/              | All your front-end tests go here.                                           |
-| app/spec/tests/test-entry.js | Entry point into your front-end tests.  Require additional tests from here. |
-| app/styles/                  | All your Stylus files go here.                                              |
-| app/styles/main.styl         | Preconfigured Stylus file.                                                  |
-| dist/                        | Builds (normal and dev) are placed here.                                    |
-| dist-test/                   | Test builds are placed here.                                                |
+| File/Directory         | Description                                                                 |
+| ----                   | ----                                                                        |
+| gulpfile.js            | Defines all tasks for gulp and webpack.                                     |
+| app/                   | All source files go here.                                                   |
+| app/assets/            | Static files go here and are copied into destination dir on build.          |
+| app/js/                | All your JS files go here.                                                  |
+| app/js/main.js         | Main entry point into your application.                                     |
+| app/spec/test-entry.js | Entry point into your front-end tests.  Require additional tests from here. |
+| app/spec/js/           | All your front-end tests go here.                                           |
+| app/styles/            | All your Stylus files go here.                                              |
+| app/styles/main.styl   | Preconfigured Stylus file.                                                  |
+| dist/                  | Builds (normal and dev) are placed here.                                    |
+| dist-test/             | Test builds are placed here.                                                |
 
 
 
