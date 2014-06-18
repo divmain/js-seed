@@ -1,10 +1,10 @@
 // Karma configuration
 
-module.exports = function(config) {
+module.exports = function (config) {
   config.set({
 
     // base path, that will be used to resolve files and exclude
-    basePath: "app/spec/tests/",
+    basePath: "app/spec/js/",
 
     // frameworks to use
     frameworks: ["mocha", "sinon-chai"],
@@ -21,7 +21,7 @@ module.exports = function(config) {
 
     // list of preprocessors
     preprocessors: {
-      "app/spec/tests/*": ["webpack"]
+      "app/spec/js/*": ["webpack"]
     },
 
     webpack: {
@@ -45,7 +45,8 @@ module.exports = function(config) {
     colors: true,
 
     // level of logging
-    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
+    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN ||
+    //                  config.LOG_INFO || config.LOG_DEBUG
     logLevel: config.LOG_WARN,
 
 
