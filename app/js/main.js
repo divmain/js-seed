@@ -1,6 +1,5 @@
-require(["lodash", "jquery"], function (_, $) {
-
+define(["lodash", "jquery"], function (_, $) {
   _();
   $();
-
+  return true;
 });

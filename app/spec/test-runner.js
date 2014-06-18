@@ -16,7 +16,7 @@ require("!script!chai-jquery/chai-jquery.js");
 
 mocha.setup("bdd");
 
-require("./tests/test-entry");
+require("app/spec/test-entry");
 
 if (window.mochaPhantomJS) {
   window.mochaPhantomJS.run();

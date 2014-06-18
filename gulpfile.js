@@ -255,7 +255,7 @@ gulp.task("build:test", function (callback) {
 
   var webpackConf = _.extend({}, config.webpack, {
     entry: {
-      test: "./spec/test-runner.js"
+      test: path.join(config.srcFullPath, "spec/test-runner.js")
     },
     output: {
       path: config.testFullPath,
