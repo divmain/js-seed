@@ -2,7 +2,7 @@
 
 A place for starting new front-end JS projects.  Just clone and go.
 
-This project is agnostic towards the specifics of your browser implementation or framework, but provides a straight-forward build-and-test stack to help you get started.
+This project is agnostic towards your framework or implementation, but provides a straight-forward build-and-test stack to help you get started.
 
 ## Stack
 
@@ -26,7 +26,7 @@ This project is agnostic towards the specifics of your browser implementation or
 
 ## Tasks
 
-You can find the tasks you'll run directly in the **Composite Tasks** section of `gulpfile.js`.  Here is a quick run-through of the options available to you.
+You can find the tasks you'll run directly in the **Composite Tasks** section of `gulpfile.js`.  Here is a quick run-through of the available options.
 
 | Invocation          | Description                                                                   |
 | ----:               | ----                                                                          |
