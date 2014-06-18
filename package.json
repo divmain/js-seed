@@ -8,16 +8,11 @@
   "dependencies": {
     "jquery": "^2.1.0",
     "lodash": "^2.4.1",
-    "lazy.js": "^0.3.2",
-    "bluebird": "^1.2.4",
     "raw-loader": "^0.5.0",
     "css-loader": "^0.6.9",
     "url-loader": "^0.5.2",
     "file-loader": "^0.5.0",
-    "style-loader": "^0.6.3",
-    "ractive": "^0.4.0",
-    "ractive-loader": "^0.4.0-pre2",
-    "pathjs": "^0.8.1"
+    "style-loader": "^0.6.3"
   },
   "devDependencies": {
     "webpack": "^1.0.0-beta6",
