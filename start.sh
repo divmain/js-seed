@@ -23,6 +23,7 @@ fi
 echo -n "cleaning up... "
 
 rm -f $CURRENTDIR/start.sh
+rm -f $CURRENTDIR/README.md
 rm -rf $CURRENTDIR/.git
 echo "OK"
 
