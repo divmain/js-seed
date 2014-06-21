@@ -13,6 +13,7 @@ cd YOUR_WORKING_DIR
 git clone https://github.com/divmain/js-seed.git PROJECT_NAME
 cd PROJECT_NAME/
 ./start.sh
+npm install
 ```
 
 This script will remove the js-seed README and the script itself.  It will also re-initialize git for the project directory and optionally create a new remote repository for you in GitHub or BitBucket.
