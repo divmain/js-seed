@@ -4,9 +4,9 @@ A place for starting new front-end JS projects.  Just clone and go.
 
 This project is agnostic towards your framework or implementation, but provides a straight-forward build-and-test stack to help you get started.
 
-## Getting Started
+## Quick Start
 
-Once you have both git and NPM, do the following to start a new projecr:
+To start a new project, run the following commands in your terminal window:
 
 ```
 cd YOUR_WORKING_DIR
