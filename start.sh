@@ -1,13 +1,21 @@
 CURRENTDIR="`pwd`"
 
-###############
-
-read -r -p "would you like to create a new github repo (y/n)? " -n 1 DO_GITHUB
+read -r -p "would you like to create a new remote repo (y/n)? " -n 1 DO_REMOTE
 echo
-if [[ $DO_GITHUB =~ ^[Yy]$ ]]; then
-    read -p "name of repo: " GITHUB_REPO
-    read -p "github username: " GITHUB_USER
-    read -s -p "github password: " GITHUB_PWD
+if [[ $DO_REMOTE =~ ^[Yy]$ ]]; then
+    read -r -p "(g)ithub or (b)itbucket? " -n 1 REMOTE_TYPE
+    echo
+    if [[ "$REMOTE_TYPE" =~ ^[Gg]$ ]]; then
+        DO_GITHUB=true
+        DO_BITBUCKET=false
+    else
+        DO_GITHUB=false
+        DO_BITBUCKET=true
+    fi
+
+    read -p "name of repo: " REPO_NAME
+    read -p "username: " USERNAME
+    read -s -p "password: " PASSWORD
 fi
 
 ###############
@@ -30,17 +38,34 @@ echo "OK"
 
 ###############
 
-if [[ $DO_GITHUB =~ ^[Yy]$ ]]; then
+if $DO_GITHUB; then
     echo -n "creating github repository... "
-    GITHUB_RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" -u "$GITHUB_USER:$GITHUB_PWD" https://api.github.com/user/repos -d '{"name":"'"$GITHUB_REPO"'"}')
+    GITHUB_RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" -u "$USERNAME:$PASSWORD" https://api.github.com/user/repos -d '{"name":"'"$REPO_NAME"'"}')
     if [ "$GITHUB_RESPONSE"="201" ]; then
         echo "OK"
         echo -n "pushing to github... "
-        git remote add origin git@github.com:$GITHUB_USER/$GITHUB_REPO.git > /dev/null
+        git remote add origin git@github.com:$USERNAME/$REPO_NAME.git > /dev/null
         git push origin master -q
         echo "OK"
     else
         echo "FAILURE"
         echo "  http response code $GITHUB_RESPONSE"
+    fi
+fi
+
+###############
+
+if $DO_BITBUCKET; then
+    echo -n "creating bitbucket repository... "
+    BITBUCKET_RESPONSE=$(curl -s -o /dev/null -X POST -u $USERNAME:$PASSWORD -w "%{http_code}" https://api.bitbucket.org/2.0/repositories/$USERNAME/$REPO_NAME -d '{"scm": "git", "is_private": true}')
+    if [ "$BITBUCKET_RESPONSE"="200" ]; then
+        echo "OK"
+        echo -n "pushing to bitbucket... "
+        git remote add origin git@bitbucket.org:$USERNAME/$REPO_NAME.git
+        git push origin master -q
+        echo "OK"
+    else
+        echo "FAILURE"
+        echo "  http response code $BITBUCKET_RESPONSE"
     fi
 fi
