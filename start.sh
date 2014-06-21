@@ -1,4 +1,6 @@
 CURRENTDIR="`pwd`"
+DO_GITHUB=false
+DO_BITBUCKET=false
 
 read -r -p "would you like to create a new remote repo (y/n)? " -n 1 DO_REMOTE
 echo
@@ -7,9 +9,7 @@ if [[ $DO_REMOTE =~ ^[Yy]$ ]]; then
     echo
     if [[ "$REMOTE_TYPE" =~ ^[Gg]$ ]]; then
         DO_GITHUB=true
-        DO_BITBUCKET=false
     else
-        DO_GITHUB=false
         DO_BITBUCKET=true
     fi
 
