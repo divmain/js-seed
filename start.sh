@@ -16,6 +16,7 @@ if [[ $DO_REMOTE =~ ^[Yy]$ ]]; then
     read -p "name of repo: " REPO_NAME
     read -p "username: " USERNAME
     read -s -p "password: " PASSWORD
+    echo
 fi
 
 ###############
