@@ -49,6 +49,9 @@ config.webpack = {
   entry: {
     main: "./js/main.js"
   },
+  resolve: {
+    root: config.root
+  },
   output: {
     path: path.join(config.destFullPath, config.js),
     publicPath: config.js + "/",
