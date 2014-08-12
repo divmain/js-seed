@@ -49,9 +49,6 @@ config.webpack = {
   entry: {
     main: "./js/main.js"
   },
-  resolve: {
-    root: config.root
-  },
   output: {
     path: path.join(config.destFullPath, config.js),
     publicPath: config.js + "/",
@@ -62,14 +59,12 @@ config.webpack = {
   module: {
     loaders: [
       { test: /\.css$/, loader: "style-loader!css-loader" },
+      { test: /\.styl$/, loader: "style-loader!css-loader!autoprefixer-loader!stylus-loader" },
+      { test: /\.tmpl$/, loader: "raw" }
     ]
   },
   resolve: {
-    alias: {
-      "_": "lodash",
-      "underscore": "lodash",
-      "app": config.srcFullPath
-    }
+    root: config.root
   },
   plugins: [
     new webpack.ProvidePlugin({
