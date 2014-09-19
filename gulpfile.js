@@ -69,7 +69,7 @@ gulp.task("copy", false, function () {
   ).pipe(gulp.dest(config.destFullPath));
 });
 
-gulp.task("lint", "Lint app and test code.", function () {
+gulp.task("lint", "Lint application- and test-code.", function () {
   return gulp.src([
     path.join(config.srcFullPath, config.js, "**/*.js"),
     path.join(config.srcFullPath, "spec/js", "**/*.js"),

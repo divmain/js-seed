@@ -54,7 +54,7 @@ Available tasks
   build:js       Build minified JS.
   build:js-dev   Build unminified JS, including sourcemaps.
   help           Display this help text.
-  lint           Lint app and test code.
+  lint           Lint application- and test-code.
   test           Run unit tests in the browser.
   test-coverage  Run unit tests in browser, include coverage.
   test-karma     Auto-run unit tests in multiple browsers.
