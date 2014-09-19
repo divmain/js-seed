@@ -208,7 +208,7 @@ gulp.task("test-karma", "Auto-run unit tests in multiple browsers.", function (d
   });
 });
 
-gulp.task("test-phantom", "Run browser unit tests the console.", function (done) {
+gulp.task("test-phantom", "Run browser unit tests in the console.", function (done) {
   karma.start({
     configFile: path.join(config.root, config.karmaConfig),
     browsers: ["PhantomJS"],

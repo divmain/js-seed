@@ -58,7 +58,7 @@ Available tasks
   test           Run unit tests in the browser.
   test-coverage  Run unit tests in browser, include coverage.
   test-karma     Auto-run unit tests in multiple browsers.
-  test-phantom   Run browser unit tests the console.
+  test-phantom   Run browser unit tests in the console.
   test-watch     Run browser unit tests in console, run again on change.
   watch          Perform build-dev when sources change.
 
