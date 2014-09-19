@@ -1,79 +1,27 @@
-/**
- * Dependencies
- */
+var _frontendTest,
+  path = require("path"),
+  _ = require("lodash"),
 
-var _ = require("lodash");
-var path = require("path");
+  // Gulp
+  gulp = require("gulp"),
+  gutil = require("gulp-util"),
+  clean = require("gulp-clean"),
+  stylus = require("gulp-stylus"),
+  prefix = require("gulp-autoprefixer"),
+  eslint = require("gulp-eslint"),
+  openUrl = require("open"),
+  webserver = require("gulp-webserver"),
 
-var gulp = require("gulp");
-var gutil = require("gulp-util");
+  // Tests
+  karma = require("karma").server,
 
-var clean = require("gulp-clean");
-var stylus = require("gulp-stylus");
-var prefix = require("gulp-autoprefixer");
-var connect = require("gulp-connect");
-var gutil = require("gulp-util");
-var jshint = require("gulp-jshint");
-var stylish = require("jshint-stylish");
+  // Webpack
+  webpack = require("webpack"),
+  WebpackDevServer = require("webpack-dev-server"),
 
-var mochaPhantomJS = require("gulp-mocha-phantomjs");
-var karma = require("gulp-karma");
-
-var webpack = require("webpack");
-
-
-/**
- * App Configuration
- */
-
-var config = {
-  src: "app",
-  dest: "dist",
-  test: "dist-test",
-  srcFullPath: path.join(__dirname, "app"),
-  destFullPath: path.join(__dirname, "dist"),
-  testFullPath: path.join(__dirname, "dist-test"),
-  root: __dirname,
-
-  js: "js",
-  assets: "assets",
-  styles: "styles",
-
-  port: 3000,
-  testPort: 3001
-};
-
-config.webpack = {
-  context: config.srcFullPath,
-  cache: true,
-  entry: {
-    main: "./js/main.js"
-  },
-  output: {
-    path: path.join(config.destFullPath, config.js),
-    publicPath: config.js + "/",
-    filename: "[name].bundle.js",
-    chunkFilename: "[id].bundle.js",
-    sourceMapFilename: "[file].map"
-  },
-  module: {
-    loaders: [
-      { test: /\.css$/, loader: "style-loader!css-loader" },
-      { test: /\.styl$/, loader: "style-loader!css-loader!autoprefixer-loader!stylus-loader" },
-      { test: /\.tmpl$/, loader: "raw" }
-    ]
-  },
-  resolve: {
-    root: config.root
-  },
-  plugins: [
-    new webpack.ProvidePlugin({
-      jQuery: "jquery",
-      $: "jquery",
-      _: "lodash"
-    })
-  ]
-};
+  // Application config
+  config = require("./project.config"),
+  webpackConfig = require("./webpack.config");
 
 
 /**
@@ -99,34 +47,14 @@ gulp.task("watch", ["build-dev"], function () {
   gulp.watch(path.join(config.srcFullPath, "**/*"), ["build-dev"]);
 });
 
-gulp.task("reload", ["build-dev", "server"], function () {
-  gulp.watch(path.join(config.srcFullPath, "**/*"), ["reload:build"]);
-});
-
-gulp.task("test", ["build:test", "server:test"], function () {
-  gulp.watch(path.join(config.srcFullPath, "**/*"), function () {
-    gulp.run("build:test");
-  });
-});
-
-gulp.task("test-phantom", ["build:test"], function () {
-  return gulp
-    .src("dist/spec/test-runner.html")
-    .pipe(mochaPhantomJS());
-});
-
-gulp.task("test-karma", function () {
-  return gulp.src("app/spec/tests/**/*")
-    .pipe(karma({
-      configFile: "karma.conf.js",
-      action: "run"
-    }));
-});
+// gulp.task("reload", ["build-dev", "reload:server"], function () {
+//   gulp.watch(path.join(config.srcFullPath, "**/*"), ["build-dev"]);
+// });
 
 
-/**
- * Component Tasks
- */
+// /**
+//  * Component Tasks
+//  */
 
 gulp.task("clean", function () {
   return gulp.src(path.join(config.dest, "*"))
@@ -137,48 +65,28 @@ gulp.task("copy", function () {
   return gulp.src(
     path.join(config.srcFullPath, config.assets, "**/*"),
     { base: path.join(config.srcFullPath, config.assets) }
-    )
-    .pipe(gulp.dest(config.destFullPath));
+  ).pipe(gulp.dest(config.destFullPath));
 });
 
 gulp.task("lint", function () {
   return gulp.src([
-    path.join(config.srcFullPath, "js", "**/*.js"),
-    path.join(config.srcFullPath, "spec/tests/**/*.js"),
-    path.join(config.root, "*.js"),
+    path.join(config.srcFullPath, config.js, "**/*.js"),
+    path.join(config.srcFullPath, "spec/js", "**/*.js"),
+    path.join(config.root, "*.js")
   ])
-    .pipe(jshint(path.join(config.root, ".jshintrc")))
-    .pipe(jshint.reporter(stylish))
-    .pipe(jshint.reporter("fail"));
+    .pipe(eslint())
+    .pipe(eslint.format());
 });
 
-gulp.task("server", function () {
-  return connect.server({
-    root: [config.destFullPath],
-    open: {},
-    livereload: true,
-    port: config.port
-  }).apply(this, arguments);
-});
-
-gulp.task("server:test", function () {
-  return connect.server({
-    root: [config.testFullPath],
-    open: {
-      file: "test-runner.html"
-    },
-    livereload: true,
-    port: config.testPort
-  }).apply(this.arguments);
-});
-
-gulp.task("reload:build", ["build-dev"], function () {
-  gulp.run("reload:go");
-});
-
-gulp.task("reload:go", function () {
-  return gulp.src(path.join(config.srcFullPath, "**/*"))
-    .pipe(connect.reload());
+gulp.task("reload:server", function () {
+  gulp.src(config.destFullPath)
+    .pipe(webserver({
+      livereload: true,
+      directoryListing: true,
+      port: config.port,
+      open: "/",
+      https: false
+    }));
 });
 
 
@@ -202,7 +110,7 @@ gulp.task("build:css", function () {
  */
 
 gulp.task("build:js", function (callback) {
-  var webpackConf = _.extend({}, config.webpack);
+  var webpackConf = _.cloneDeep(webpackConfig);
 
   webpackConf.plugins = webpackConf.plugins.concat([
     new webpack.DefinePlugin({
@@ -226,11 +134,9 @@ gulp.task("build:js", function (callback) {
 });
 
 gulp.task("build:js-dev", function (callback) {
-
-  var webpackConf = _.extend({}, config.webpack, {
-    devtool: "sourcemap",
-    debug: true
-  });
+  var webpackConf = _.cloneDeep(webpackConfig);
+  webpackConf.devtool = "sourcemap";
+  webpackConf.debug = true;
 
   webpack(webpackConf, function (err, stats) {
     if (err) {
@@ -243,31 +149,89 @@ gulp.task("build:js-dev", function (callback) {
   });
 });
 
+
 /**
  * Tests
  */
 
-gulp.task("build:test", function (callback) {
-  gulp.src(path.join(config.srcFullPath, "spec/test-runner.html"))
-    .pipe(gulp.dest(config.testFullPath));
+_frontendTest = function (includeCoverage) {
+  var server,
+    wpConfig = Object.create(webpackConfig);
 
-  var webpackConf = _.extend({}, config.webpack, {
-    entry: {
-      test: path.join(config.srcFullPath, "spec/test-runner.js")
-    },
-    output: {
-      path: config.testFullPath,
-      publicPath: "/",
-      filename: "[name].bundle.js"
-    },
-    devtool: "sourcemap",
-    debug: true
+  wpConfig.entry = { test: "mocha!" + path.join(config.root, config.testRunner) };
+  wpConfig.debug = true;
+  wpConfig.devtool = "source-map";
+
+  if (includeCoverage) {
+    wpConfig.module.postLoaders = [{
+      test: new RegExp(path.join(config.src, config.js)),
+      loader: "coverjs-loader"
+    }];
+  }
+
+  server = new WebpackDevServer(webpack(wpConfig), {
+    hot: true,
+    quiet: false,
+    noInfo: false,
+    watchDelay: 300,
+    publicPath: "/",
+    stats: {
+      colors: true
+    }
   });
 
-  webpack(webpackConf, function (err) {
+  server.listen(9890, "localhost", function (err) {
+    if (err) { throw new gutil.PluginError("[webpack-dev-server]", err); }
+    openUrl("http://localhost:9890/test.bundle");
+  });
+
+  return server;
+};
+
+gulp.task("test", _.partial(_frontendTest, false));
+gulp.task("test-coverage", _.partial(_frontendTest, true));
+
+gulp.task("test-karma", function (done) {
+  karma.start({
+    configFile:  path.join(config.root, config.karmaConfig),
+    browsers: ["Chrome", "Firefox", "Safari"],
+    singleRun: true
+  }, function (err) {
     if (err) {
-      throw new gutil.PluginError("build:test", err);
+      done(err);
+      process.exit(1);
     }
-    callback();
+    done();
+    process.exit(0);
+  });
+});
+
+gulp.task("test-phantom", function (done) {
+  karma.start({
+    configFile: path.join(config.root, config.karmaConfig),
+    browsers: ["PhantomJS"],
+    singleRun: true
+  }, function (err) {
+    if (err) {
+      done(err);
+      process.exit(1);
+    }
+    done();
+    process.exit(0);
+  });
+});
+
+gulp.task("test-watch", function (done) {
+  karma.start({
+    configFile: path.join(config.root, config.karmaConfig),
+    browsers: ["PhantomJS"],
+    singleRun: false
+  }, function (err) {
+    if (err) {
+      done(err);
+      process.exit(1);
+    }
+    done();
+    process.exit(0);
   });
 });

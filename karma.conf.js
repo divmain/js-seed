@@ -1,82 +1,58 @@
-// Karma configuration
+var
+  projectConfig = require("./project.config"),
+  webpackConfig = require("./webpack.config"),
+  _ = require("lodash");
+
+webpackConfig = _.clone(webpackConfig);
+
+delete webpackConfig.entry;
 
 module.exports = function (config) {
   config.set({
-
-    // base path, that will be used to resolve files and exclude
-    basePath: "app/spec/js/",
-
-    // frameworks to use
+    basePath: projectConfig.root,
     frameworks: ["mocha", "sinon-chai"],
-
-    // list of files / patterns to load in the browser
-    files: [
-
-    ],
-
-    // list of files to exclude
-    exclude: [
-
-    ],
-
-    // list of preprocessors
-    preprocessors: {
-      "app/spec/js/*": ["webpack"]
-    },
-
-    webpack: {
-      cache: true
-    },
-
+    files: [ "frontend/spec/js/**/*.js" ],
+    exclude: [],
+    preprocessors: { "frontend/**/*.js": ["webpack"] },
+    webpack: webpackConfig,
     webpackServer: {
+      hot: true,
+      quiet: true,
+      noInfo: false,
       stats: {
         colors: true
       }
     },
-
-    // test results reporter to use
-    // possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
     reporters: ["progress"],
-
-    // web server port
     port: 9876,
-
-    // enable / disable colors in the output (reporters and logs)
     colors: true,
+    autoWatch: true,
+    captureTimeout: 60000,
+    singleRun: true,
 
-    // level of logging
-    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN ||
-    //                  config.LOG_INFO || config.LOG_DEBUG
+    // - config.LOG_DISABLE
+    // - config.LOG_ERROR
+    // - config.LOG_WARN
+    // - config.LOG_INFO
+    // - config.LOG_DEBUG
     logLevel: config.LOG_WARN,
 
-
-    // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: true,
-
-    // Start these browsers, currently available:
-    // - Chrome
-    // - ChromeCanary
-    // - Firefox
-    // - Opera (has to be installed with `npm install karma-opera-launcher`)
-    // - Safari (only Mac; has to be installed with `npm install karma-safari-launcher`)
-    // - PhantomJS
-    // - IE (only Windows; has to be installed with `npm install karma-ie-launcher`)
-    browsers: ["Chrome", "Firefox", "Safari"],
-
-    // If browser does not capture in given timeout [ms], kill it
-    captureTimeout: 60000,
-
-    // Continuous Integration mode
-    // if true, it capture browsers, run tests and exit
-    singleRun: false,
+    // - Chrome (karma-chrome-launcher)
+    // - Firefox (karma-firefox-launcher)
+    // - Opera (karma-opera-launcher)
+    // - Safari (karma-safari-launcher)
+    // - PhantomJS (karma-phantomjs-launcher)
+    // - IE (karma-ie-launcher)
+    browsers: ["PhantomJS", "Chrome", "Firefox", "Safari"],
 
     plugins: [
       require("karma-mocha"),
+      require("karma-sinon-chai"),
+      require("karma-phantomjs-launcher"),
       require("karma-chrome-launcher"),
       require("karma-firefox-launcher"),
       require("karma-safari-launcher"),
-      require("karma-webpack"),
-      require("karma-sinon-chai")
+      require("karma-webpack")
     ]
   });
 };
