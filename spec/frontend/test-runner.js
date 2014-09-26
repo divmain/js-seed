@@ -1,16 +1,15 @@
 window.chai = require("chai");
-window.expect = chai.expect;
+window.expect = window.chai.expect;
 window.sinon = require("sinon");
-var sinonChai = require("sinon-chai");
-chai.use(sinonChai);
+window.chai.use(require("sinon-chai"));
 
 require("spec/frontend/test-entry");
 
 after(function() {
+  var coverJsEl, mochaEl;
   require("coverjs-loader").reportHtml();
 
-  var
-    coverJsEl = document.querySelector(".coverjs-report"),
-    mochaEl = document.querySelector("#mocha");
+  coverJsEl = document.querySelector(".coverjs-report");
+  mochaEl = document.querySelector("#mocha");
   if (coverJsEl) { mochaEl.appendChild(coverJsEl); }
 });
