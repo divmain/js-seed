@@ -10,7 +10,7 @@ module.exports = {
   js: "js",
   assets: "assets",
   styles: "styles",
-  testRunner: "frontend/spec/test-runner.js",
+  testRunner: "spec/frontend/test-runner.js",
   karmaConfig: "karma.conf.js",
 
   port: 3000,

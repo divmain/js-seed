@@ -4,7 +4,7 @@ window.sinon = require("sinon");
 var sinonChai = require("sinon-chai");
 chai.use(sinonChai);
 
-require("frontend/spec/test-entry");
+require("spec/frontend/test-entry");
 
 after(function() {
   require("coverjs-loader").reportHtml();
