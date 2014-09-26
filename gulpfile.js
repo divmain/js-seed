@@ -183,7 +183,7 @@ _frontendTest = function (includeCoverage) {
 
   server.listen(9890, "localhost", function (err) {
     if (err) { throw new gutil.PluginError("[webpack-dev-server]", err); }
-    openUrl("http://localhost:9890/test.bundle");
+    openUrl("http://localhost:9890/webpack-dev-server/test.bundle");
   });
 
   return server;
