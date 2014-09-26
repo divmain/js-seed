@@ -71,8 +71,8 @@ gulp.task("copy", false, function () {
 
 gulp.task("lint", "Lint application- and test-code.", function () {
   return gulp.src([
-    path.join(config.srcFullPath, config.js, "**/*.js"),
-    path.join(config.srcFullPath, "spec/js", "**/*.js"),
+    path.join(config.srcFullPath, "**/*.js"),
+    path.join(config.root, config.spec, "**/*.js"),
     path.join(config.root, "*.js")
   ])
     .pipe(eslint())

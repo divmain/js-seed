@@ -47,7 +47,6 @@ module.exports = function (config) {
 
     plugins: [
       require("karma-mocha"),
-      require("karma-sinon-chai"),
       require("karma-phantomjs-launcher"),
       require("karma-chrome-launcher"),
       require("karma-firefox-launcher"),
