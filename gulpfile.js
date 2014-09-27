@@ -134,7 +134,7 @@ gulp.task("build:js", "Build minified JS.", function (callback) {
   });
 });
 
-gulp.task("build:js-dev", "Build unminified JS, including sourcemaps.", function (callback) {
+gulp.task("build:js-dev", "Build unminified JS with sourcemaps.", function (callback) {
   var webpackConf = _.cloneDeep(webpackConfig);
   webpackConf.devtool = "sourcemap";
   webpackConf.debug = true;
@@ -165,7 +165,7 @@ _frontendTest = function (includeCoverage) {
 
   if (includeCoverage) {
     wpConfig.module.postLoaders = [{
-      test: new RegExp(path.join(config.src, config.js)),
+      test: /^((?!(\/spec\/|\/node_modules\/)).)*$/,
       loader: "coverjs-loader"
     }];
   }
@@ -223,7 +223,7 @@ gulp.task("test-phantom", "Run browser unit tests in the console.", function (do
   });
 });
 
-gulp.task("test-watch", "Run browser unit tests in console, run again on change.", function (done) {
+gulp.task("test-watch", "Run browser tests in console; run again on change.", function (done) {
   karma.start({
     configFile: path.join(config.root, config.karmaConfig),
     browsers: ["PhantomJS"],
