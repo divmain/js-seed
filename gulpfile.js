@@ -159,7 +159,10 @@ _frontendTest = function (includeCoverage) {
   var server,
     wpConfig = Object.create(webpackConfig);
 
-  wpConfig.entry = { test: "mocha!" + path.join(config.root, config.testRunner) };
+  wpConfig.entry = { test: [
+    "webpack/hot/dev-server",
+    "mocha!" + path.join(config.root, config.testRunner)
+  ]};
   wpConfig.debug = true;
   wpConfig.devtool = "source-map";
 
@@ -169,6 +172,8 @@ _frontendTest = function (includeCoverage) {
       loader: "coverjs-loader"
     }];
   }
+
+  wpConfig.plugins.push(new webpack.HotModuleReplacementPlugin());
 
   server = new WebpackDevServer(webpack(wpConfig), {
     hot: true,
@@ -180,7 +185,6 @@ _frontendTest = function (includeCoverage) {
       colors: true
     }
   });
-
   server.listen(9890, "localhost", function (err) {
     if (err) { throw new gutil.PluginError("[webpack-dev-server]", err); }
     openUrl("http://localhost:9890/webpack-dev-server/test.bundle");

@@ -10,11 +10,13 @@ module.exports = {
   },
   output: {
     path: path.join(config.destFullPath, config.js),
-    publicPath: config.js + "/",
     filename: "[name].bundle.js",
     chunkFilename: "[id].bundle.js",
-    sourceMapFilename: "[file].map"
+    sourceMapFilename: "[file].map",
+    hotUpdateMainFilename: "updates/[hash]/update.json",
+    hotUpdateChunkFilename: "updates/[hash]/js/[id].update.js"
   },
+  recordsOutputPath: path.join(__dirname, "records.json"),
   module: {
     loaders: [
       { test: /\.css$/, loader: "style-loader!css-loader" },
