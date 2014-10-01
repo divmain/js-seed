@@ -23,7 +23,7 @@ module.exports = function (config) {
         colors: true
       }
     },
-    reporters: ["progress"],
+    reporters: ["mocha"],
     port: 9876,
     colors: true,
     autoWatch: true,
@@ -51,7 +51,8 @@ module.exports = function (config) {
       require("karma-chrome-launcher"),
       require("karma-firefox-launcher"),
       require("karma-safari-launcher"),
-      require("karma-webpack")
+      require("karma-webpack"),
+      require("karma-mocha-reporter")
     ]
   });
 };
