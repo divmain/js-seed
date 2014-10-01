@@ -39,6 +39,7 @@
     "karma-chrome-launcher": "^0.1.4",
     "karma-mocha": "^0.1.9",
     "gulp-webserver": "^0.8.1",
-    "gulp-help": "^1.1.0"
+    "gulp-help": "^1.1.0",
+    "map-stream": "^0.1.0"
   }
 }
