@@ -1,44 +1,64 @@
 {
-  "name": "js-seed",
-  "version": "0.0.0",
-  "private": true,
+  "name"            : "js-seed",
+  "description"     : "",
+
+  "version"         : "0.0.0",
+  "author"          : "Dale Bustad <dale@divmain.com>",
+
+  "homepage"        : "https://github.com/divmain/js-seed",
+  "bugs": {
+    "url": "https://github.com/divmain/js-seed/issues"
+  },
+
+  "repository"      : "git://github.com/divmain/js-seed.git",
+  "private"         : true,
+
+  "dependencies": {
+  },
+  "devDependencies": {
+    "lodash"                   : "^2.4.1",
+    "webpack"                  : "^1.4.0-beta6",
+    "webpack-dev-server"       : "^1.6.4",
+    "raw-loader"               : "^0.5.1",
+    "style-loader"             : "^0.8.0",
+    "css-loader"               : "^0.8.0",
+    "autoprefixer-loader"      : "^1.0.0",
+    "stylus-loader"            : "^0.4.0",
+    "script-loader"            : "^0.6.0",
+    "mocha-loader"             : "^0.6.5",
+    "imports-loader"           : "^0.6.3",
+    "coverjs-loader"           : "^0.5.0",
+    "gulp"                     : "^3.8.8",
+    "gulp-clean"               : "^0.3.1",
+    "gulp-autoprefixer"        : "^1.0.0",
+    "gulp-stylus"              : "^1.3.2",
+    "gulp-eslint"              : "^0.1.8",
+    "gulp-util"                : "^3.0.1",
+    "gulp-karma"               : "0.0.4",
+    "gulp-mocha"               : "^1.1.0",
+    "chai"                     : "^1.9.1",
+    "sinon"                    : "^1.10.3",
+    "sinon-chai"               : "^2.5.0",
+    "mocha"                    : "^1.21.4",
+    "open"                     : "0.0.5",
+    "karma"                    : "^0.12.23",
+    "karma-webpack"            : "^1.2.2",
+    "karma-firefox-launcher"   : "^0.1.3",
+    "karma-safari-launcher"    : "^0.1.1",
+    "karma-phantomjs-launcher" : "^0.1.4",
+    "karma-chrome-launcher"    : "^0.1.4",
+    "karma-mocha"              : "^0.1.9",
+    "gulp-webserver"           : "^0.8.1",
+    "gulp-help"                : "^1.1.0"
+  },
+
   "scripts": {
     "start": "gulp"
   },
-  "devDependencies": {
-    "lodash": "^2.4.1",
-    "webpack": "^1.4.0-beta6",
-    "webpack-dev-server": "^1.6.4",
-    "raw-loader": "^0.5.1",
-    "style-loader": "^0.8.0",
-    "css-loader": "^0.8.0",
-    "autoprefixer-loader": "^1.0.0",
-    "stylus-loader": "^0.4.0",
-    "script-loader": "^0.6.0",
-    "mocha-loader": "^0.6.5",
-    "imports-loader": "^0.6.3",
-    "coverjs-loader": "^0.5.0",
-    "gulp": "^3.8.8",
-    "gulp-clean": "^0.3.1",
-    "gulp-autoprefixer": "^1.0.0",
-    "gulp-stylus": "^1.3.2",
-    "gulp-eslint": "^0.1.8",
-    "gulp-util": "^3.0.1",
-    "gulp-karma": "0.0.4",
-    "gulp-mocha": "^1.1.0",
-    "chai": "^1.9.1",
-    "sinon": "^1.10.3",
-    "sinon-chai": "^2.5.0",
-    "mocha": "^1.21.4",
-    "open": "0.0.5",
-    "karma": "^0.12.23",
-    "karma-webpack": "^1.2.2",
-    "karma-firefox-launcher": "^0.1.3",
-    "karma-safari-launcher": "^0.1.1",
-    "karma-phantomjs-launcher": "^0.1.4",
-    "karma-chrome-launcher": "^0.1.4",
-    "karma-mocha": "^0.1.9",
-    "gulp-webserver": "^0.8.1",
-    "gulp-help": "^1.1.0"
-  }
+
+  "engines":{
+    "node": ">= 0.10.0"
+  },
+
+  "license": "MIT"
 }
