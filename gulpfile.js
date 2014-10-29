@@ -13,7 +13,6 @@ var
   webserver = require("gulp-webserver"),
 
   // Tests
-  karma = require("karma").server,
 
   // Webpack
   webpack = require("webpack");
@@ -57,13 +56,7 @@ gulp.task("watch", "Perform build-dev when sources change.", ["build-dev"], func
  */
 
 require("./tasks/clean");
-
-gulp.task("copy", false, function () {
-  return gulp.src(
-    path.join(config.frontendFullPath, config.assets, "**/*"),
-    { base: path.join(config.frontendFullPath, config.assets) }
-  ).pipe(gulp.dest(config.destFullPath));
-});
+require("./tasks/frontend-copy");
 
 require("./tasks/lint")(gulp, config);
 
@@ -144,48 +137,4 @@ gulp.task("build:js-dev", "Build unminified JS with sourcemaps.", function (call
  */
 
 require("./tasks/frontend-test-browser")(gulp, config);
-
-gulp.task("test-karma", "Auto-run unit tests in multiple browsers.", function (done) {
-  karma.start({
-    configFile: path.join(config.root, config.karmaConfig),
-    browsers: ["Chrome", "Firefox", "Safari"],
-    singleRun: true
-  }, function (err) {
-    if (err) {
-      done(err);
-      process.exit(1);
-    }
-    done();
-    process.exit(0);
-  });
-});
-
-gulp.task("test-phantom", "Run browser unit tests in the console.", function (done) {
-  karma.start({
-    configFile: path.join(config.root, config.karmaConfig),
-    browsers: ["PhantomJS"],
-    singleRun: true
-  }, function (err) {
-    if (err) {
-      done(err);
-      process.exit(1);
-    }
-    done();
-    process.exit(0);
-  });
-});
-
-gulp.task("test-watch", "Run browser tests in console; run again on change.", function (done) {
-  karma.start({
-    configFile: path.join(config.root, config.karmaConfig),
-    browsers: ["PhantomJS"],
-    singleRun: false
-  }, function (err) {
-    if (err) {
-      done(err);
-      process.exit(1);
-    }
-    done();
-    process.exit(0);
-  });
-});
+require("./tasks/frontend-test-karma")(gulp, config);
