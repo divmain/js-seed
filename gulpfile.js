@@ -10,7 +10,6 @@ var
   gutil = require("gulp-util"),
   stylus = require("gulp-stylus"),
   prefix = require("gulp-autoprefixer"),
-  openUrl = require("open"),
   del = require("del"),
   webserver = require("gulp-webserver"),
 
@@ -18,15 +17,13 @@ var
   karma = require("karma").server,
 
   // Webpack
-  webpack = require("webpack"),
-  WebpackDevServer = require("webpack-dev-server");
+  webpack = require("webpack");
 
   // Application config
 var
   config = require("./project.config"),
   webpackConfig = require("./webpack.config");
 
-var _frontendTest;
 
 // Change `gulp.task` signature to require task descriptions.
 gulpHelp(gulp);
@@ -151,47 +148,7 @@ gulp.task("build:js-dev", "Build unminified JS with sourcemaps.", function (call
  * Tests
  */
 
-_frontendTest = function (includeCoverage) {
-  var server,
-    wpConfig = Object.create(webpackConfig);
-
-  wpConfig.entry = { test: [
-    "webpack/hot/dev-server",
-    "mocha!" + path.join(config.root, config.testRunner)
-  ]};
-  wpConfig.debug = true;
-  wpConfig.devtool = "source-map";
-
-  if (includeCoverage) {
-    wpConfig.module.postLoaders = [{
-      test: /^((?!(\/spec\/|\/node_modules\/)).)*$/,
-      loader: "coverjs-loader"
-    }];
-  }
-
-  wpConfig.plugins.push(new webpack.HotModuleReplacementPlugin());
-
-  server = new WebpackDevServer(webpack(wpConfig), {
-    hot: true,
-    quiet: false,
-    noInfo: false,
-    watchDelay: 300,
-    publicPath: "/",
-    stats: {
-      colors: true
-    }
-  });
-  server.listen(9890, "localhost", function (err) {
-    if (err) { throw new gutil.PluginError("[webpack-dev-server]", err); }
-    openUrl("http://localhost:9890/webpack-dev-server/test.bundle");
-  });
-
-  return server;
-};
-
-gulp.task("test", "Run unit tests in the browser.", _.partial(_frontendTest, false));
-gulp.task("test-coverage", "Run unit tests in browser, include coverage.",
-  _.partial(_frontendTest, true));
+require("./tasks/frontend-test-browser")(gulp, config);
 
 gulp.task("test-karma", "Auto-run unit tests in multiple browsers.", function (done) {
   karma.start({
