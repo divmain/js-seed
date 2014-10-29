@@ -3,15 +3,16 @@ var
 
 var
   _ = require("lodash"),
+  gutil = require("gulp-util"),
   map = require("map-stream"),
   eslint = require("gulp-eslint");
 
 
 module.exports = function (gulp, config) {
-  gulp.task("lint", "Lint application- and test-code.", function () {
+  gulp.task("lint", "Lint application- and test-code.", function (cb) {
     var success = true;
 
-    return gulp.src([
+    gulp.src([
       path.join(config.frontendFullPath, "**/*.js"),
       path.join(config.root, config.spec, "**/*.js"),
       path.join(config.root, "*.js"),
@@ -27,7 +28,7 @@ module.exports = function (gulp, config) {
       .pipe(eslint.format())
       .on("end", function () {
         if (!success) {
-          throw new Error("*** FAILED ESLINT ***");
+          cb(new gutil.PluginError("lint", "*** FAILED ESLINT ***"));
         }
       });
   });
