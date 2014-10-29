@@ -7,11 +7,11 @@ var _frontendTest,
   gulp = require("gulp"),
   gulpHelp = require("gulp-help"),
   gutil = require("gulp-util"),
-  clean = require("gulp-clean"),
   stylus = require("gulp-stylus"),
   prefix = require("gulp-autoprefixer"),
   eslint = require("gulp-eslint"),
   openUrl = require("open"),
+  del = require("del"),
   webserver = require("gulp-webserver"),
 
   // Tests
@@ -58,9 +58,10 @@ gulp.task("watch", "Perform build-dev when sources change.", ["build-dev"], func
  * Component Tasks
  */
 
-gulp.task("clean", false, function () {
-  return gulp.src(path.join(config.dest, "*"))
-    .pipe(clean());
+gulp.task("clean", function (cb) {
+  del([
+    path.join(config.dest, "**")
+  ], cb);
 });
 
 gulp.task("copy", false, function () {
