@@ -8,10 +8,7 @@ var
   webpack = require("webpack"),
   WebpackDevServer = require("webpack-dev-server");
 
-var
-  webpackConfig = require("../webpack.config");
-
-module.exports = function (gulp, config) {
+module.exports = function (gulp, config, webpackConfig) {
   var _frontendTest = function (includeCoverage) {
     var server,
       wpConfig = Object.create(webpackConfig);

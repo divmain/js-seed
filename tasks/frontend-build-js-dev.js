@@ -3,10 +3,8 @@ var
   gutil = require("gulp-util"),
   webpack = require("webpack");
 
-var
-  webpackConfig = require("../webpack.config");
 
-module.exports = function (gulp) {
+module.exports = function (gulp, webpackConfig) {
   gulp.task("build:js-dev", "Build unminified JS with sourcemaps.", function (callback) {
     var webpackConf = _.cloneDeep(webpackConfig);
     webpackConf.devtool = "sourcemap";

@@ -2,26 +2,15 @@ var
   path = require("path");
 
 var
-  _ = require("lodash"),
-
-  // Gulp
   gulp = require("gulp"),
-  gulpHelp = require("gulp-help"),
-  gutil = require("gulp-util"),
+  gulpHelp = require("gulp-help");
 
-  // Tests
-
-  // Webpack
-  webpack = require("webpack");
-
-  // Application config
 var
   config = require("./project.config"),
   webpackConfig = require("./webpack.config");
 
 
-// Change `gulp.task` signature to require task descriptions.
-gulpHelp(gulp);
+gulpHelp(gulp); // Update `gulp.task` signature to take task descriptions.
 
 
 /**
@@ -55,25 +44,8 @@ gulp.task("watch", "Perform build-dev when sources change.", ["build-dev"], func
 require("./tasks/clean");
 require("./tasks/frontend-copy");
 require("./tasks/lint")(gulp, config);
-
-/**
- * Stylus / CSS
- */
-
 require("./tasks/frontend-build-css")(gulp, config);
-
-
-/**
- * JS
- */
-
-require("./tasks/frontend-build-js")(gulp, config);
-require("./tasks/frontend/build-js-dev")(gulp, config);
-
-
-/**
- * Tests
- */
-
-require("./tasks/frontend-test-browser")(gulp, config);
+require("./tasks/frontend-build-js")(gulp, webpackConfig);
+require("./tasks/frontend-build-js-dev")(gulp, webpackConfig);
+require("./tasks/frontend-test-browser")(gulp, config, webpackConfig);
 require("./tasks/frontend-test-karma")(gulp, config);
