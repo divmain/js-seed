@@ -1,7 +1,9 @@
 var
-  projectConfig = require("./project.config"),
-  webpackConfig = require("./webpack.config"),
   _ = require("lodash");
+
+var
+  projectConfig = require("./project.config"),
+  webpackConfig = require("./webpack.config");
 
 webpackConfig = _.clone(webpackConfig);
 

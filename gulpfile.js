@@ -1,5 +1,7 @@
-var _frontendTest,
-  path = require("path"),
+var
+  path = require("path");
+
+var
   _ = require("lodash"),
   map = require("map-stream"),
 
@@ -19,12 +21,14 @@ var _frontendTest,
 
   // Webpack
   webpack = require("webpack"),
-  WebpackDevServer = require("webpack-dev-server"),
+  WebpackDevServer = require("webpack-dev-server");
 
   // Application config
+var
   config = require("./project.config"),
   webpackConfig = require("./webpack.config");
 
+var _frontendTest;
 
 // Change `gulp.task` signature to require task descriptions.
 gulpHelp(gulp);
@@ -214,7 +218,7 @@ gulp.task("test-coverage", "Run unit tests in browser, include coverage.",
 
 gulp.task("test-karma", "Auto-run unit tests in multiple browsers.", function (done) {
   karma.start({
-    configFile:  path.join(config.root, config.karmaConfig),
+    configFile: path.join(config.root, config.karmaConfig),
     browsers: ["Chrome", "Firefox", "Safari"],
     singleRun: true
   }, function (err) {

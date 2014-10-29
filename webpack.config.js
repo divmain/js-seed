@@ -1,5 +1,7 @@
 var
-  path = require("path"),
+  path = require("path");
+
+var
   config = require("./project.config");
 
 module.exports = {

@@ -1,5 +1,5 @@
-var sandbox,
-  main = require("frontend/js/main");
+var main = require("frontend/js/main");
+var sandbox;
 
 describe("the main thing", function () {
   beforeEach(function () {
