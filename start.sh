@@ -2,6 +2,8 @@ CURRENTDIR="`pwd`"
 DO_GITHUB=false
 DO_BITBUCKET=false
 
+###############
+
 read -r -p "would you like to create a new remote repo (y/n)? " -n 1 DO_REMOTE
 echo
 if [[ $DO_REMOTE =~ ^[Yy]$ ]]; then
@@ -18,6 +20,22 @@ if [[ $DO_REMOTE =~ ^[Yy]$ ]]; then
     read -s -p "password: " PASSWORD
     echo
 fi
+
+# echo "does your project have,"
+# echo " (1) a browser-based component,"
+# echo " (2) a Node.js-based component, or"
+# echo " (3) both?"
+# read -r -p "> " -n 1 PROJECT_TYPE
+
+###############
+
+# if [ "$PROJECT_TYPE" == "1" ]; then
+#     # TODO: switch to browser-only branch
+# fi
+
+# if [ "$PROJECT_TYPE" == "2" ]; then
+#     # TODO: switch to node-only branch
+# fi
 
 ###############
 
@@ -71,3 +89,7 @@ if $DO_BITBUCKET; then
         echo "  http response code $BITBUCKET_RESPONSE"
     fi
 fi
+
+###############
+
+## TODO: run `npm install`
