@@ -3,7 +3,6 @@ var
 
 var
   _ = require("lodash"),
-  map = require("map-stream"),
 
   // Gulp
   gulp = require("gulp"),
@@ -11,7 +10,6 @@ var
   gutil = require("gulp-util"),
   stylus = require("gulp-stylus"),
   prefix = require("gulp-autoprefixer"),
-  eslint = require("gulp-eslint"),
   openUrl = require("open"),
   del = require("del"),
   webserver = require("gulp-webserver"),
@@ -75,28 +73,7 @@ gulp.task("copy", false, function () {
   ).pipe(gulp.dest(config.destFullPath));
 });
 
-gulp.task("lint", "Lint application- and test-code.", function () {
-  var success = true;
-
-  return gulp.src([
-    path.join(config.frontendFullPath, "**/*.js"),
-    path.join(config.root, config.spec, "**/*.js"),
-    path.join(config.root, "*.js")
-  ])
-    .pipe(eslint())
-    .pipe(map(function (file, output) {
-      success = success && _.every(file.eslint && file.eslint.messages, function (message) {
-        return message.severity !== 2;
-      });
-      return output(null, file);
-    }))
-    .pipe(eslint.format())
-    .on("end", function () {
-      if (!success) {
-        throw new Error("*** FAILED ESLINT ***");
-      }
-    });
-});
+require("./tasks/lint")(gulp, config);
 
 gulp.task("reload:server", false, function () {
   gulp.src(config.destFullPath)
