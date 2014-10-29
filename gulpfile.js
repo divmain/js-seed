@@ -10,7 +10,6 @@ var
   gutil = require("gulp-util"),
   stylus = require("gulp-stylus"),
   prefix = require("gulp-autoprefixer"),
-  del = require("del"),
   webserver = require("gulp-webserver"),
 
   // Tests
@@ -57,11 +56,7 @@ gulp.task("watch", "Perform build-dev when sources change.", ["build-dev"], func
  * Component Tasks
  */
 
-gulp.task("clean", false, function (cb) {
-  del([
-    path.join(config.dest, "**")
-  ], cb);
-});
+require("./tasks/clean");
 
 gulp.task("copy", false, function () {
   return gulp.src(
