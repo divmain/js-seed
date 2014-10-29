@@ -17,7 +17,9 @@ gulpHelp(gulp); // Update `gulp.task` signature to take task descriptions.
  * Composite Tasks
  */
 
-gulp.task("default", false, ["help"], function () {});
+gulp.task("default", false, function () {
+  gulp.tasks.help.fn();
+});
 
 gulp.task("build", "Copy assets, build CSS and JS.", ["lint", "test-phantom"], function () {
   gulp.run("frontend-clean");
