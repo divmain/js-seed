@@ -8,8 +8,6 @@ var
   gulp = require("gulp"),
   gulpHelp = require("gulp-help"),
   gutil = require("gulp-util"),
-  stylus = require("gulp-stylus"),
-  prefix = require("gulp-autoprefixer"),
   webserver = require("gulp-webserver"),
 
   // Tests
@@ -57,7 +55,6 @@ gulp.task("watch", "Perform build-dev when sources change.", ["build-dev"], func
 
 require("./tasks/clean");
 require("./tasks/frontend-copy");
-
 require("./tasks/lint")(gulp, config);
 
 gulp.task("reload:server", false, function () {
@@ -76,15 +73,7 @@ gulp.task("reload:server", false, function () {
  * Stylus / CSS
  */
 
-gulp.task("build:css", "Build CSS.", function () {
-  return gulp.src(path.join(config.frontendFullPath, config.styles, "*"))
-    .pipe(stylus({
-      set: ["compress"],
-      define: { "ie8": true }
-    }))
-    .pipe(prefix("last 1 version", "> 1%", "ie 8"))
-    .pipe(gulp.dest(path.join(config.destFullPath, "styles")));
-});
+require("./tasks/frontend-build-css")(gulp, config);
 
 
 /**
