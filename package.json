@@ -41,7 +41,7 @@
     "open": "0.0.5",
     "raw-loader": "0.5.1",
     "script-loader": "0.6.0",
-    "sinon": "1.11.1",
+    "sinon": "1.9.1",
     "sinon-chai": "2.5.0",
     "style-loader": "0.8.1",
     "stylus-loader": "0.4.0",
