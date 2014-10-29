@@ -81,22 +81,7 @@ require("./tasks/frontend-build-css")(gulp, config);
  */
 
 require("./tasks/frontend-build-js")(gulp, config);
-
-gulp.task("build:js-dev", "Build unminified JS with sourcemaps.", function (callback) {
-  var webpackConf = _.cloneDeep(webpackConfig);
-  webpackConf.devtool = "sourcemap";
-  webpackConf.debug = true;
-
-  webpack(webpackConf, function (err, stats) {
-    if (err) {
-      throw new gutil.PluginError("build:js-dev", err);
-    }
-    gutil.log("[build:js-dev]", stats.toString({
-      colors: true
-    }));
-    callback();
-  });
-});
+require("./tasks/frontend/build-js-dev")(gulp, config);
 
 
 /**
