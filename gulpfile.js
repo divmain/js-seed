@@ -8,7 +8,6 @@ var
   gulp = require("gulp"),
   gulpHelp = require("gulp-help"),
   gutil = require("gulp-util"),
-  webserver = require("gulp-webserver"),
 
   // Tests
 
@@ -56,18 +55,6 @@ gulp.task("watch", "Perform build-dev when sources change.", ["build-dev"], func
 require("./tasks/clean");
 require("./tasks/frontend-copy");
 require("./tasks/lint")(gulp, config);
-
-gulp.task("reload:server", false, function () {
-  gulp.src(config.destFullPath)
-    .pipe(webserver({
-      livereload: true,
-      directoryListing: true,
-      port: config.port,
-      open: "/",
-      https: false
-    }));
-});
-
 
 /**
  * Stylus / CSS
