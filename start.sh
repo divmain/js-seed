@@ -43,7 +43,7 @@ echo "OK"
 if $DO_GITHUB; then
     echo -n "creating github repository... "
     GITHUB_RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" -u "$USERNAME:$PASSWORD" https://api.github.com/user/repos -d '{"name":"'"$REPO_NAME"'"}')
-    if [ "$GITHUB_RESPONSE"="201" ]; then
+    if [ "$GITHUB_RESPONSE" == "201" ]; then
         echo "OK"
         echo -n "pushing to github... "
         git remote add origin git@github.com:$USERNAME/$REPO_NAME.git > /dev/null
@@ -59,8 +59,8 @@ fi
 
 if $DO_BITBUCKET; then
     echo -n "creating bitbucket repository... "
-    BITBUCKET_RESPONSE=$(curl -s -o /dev/null -X POST -u $USERNAME:$PASSWORD -w "%{http_code}" https://api.bitbucket.org/2.0/repositories/$USERNAME/$REPO_NAME -d '{"scm": "git", "is_private": true}')
-    if [ "$BITBUCKET_RESPONSE"="200" ]; then
+    BITBUCKET_RESPONSE=$(curl -s -o /dev/null -X POST -u "$USERNAME:$PASSWORD" -w "%{http_code}" https://api.bitbucket.org/2.0/repositories/$USERNAME/$REPO_NAME -d '{"scm": "git", "is_private": true}')
+    if [ "$BITBUCKET_RESPONSE" == "200" ]; then
         echo "OK"
         echo -n "pushing to bitbucket... "
         git remote add origin git@bitbucket.org:$USERNAME/$REPO_NAME.git
