@@ -54,7 +54,7 @@ gulp.task("build-dev", "Build, but with unminified JS + sourcemaps.", ["clean"],
 });
 
 gulp.task("watch", "Perform build-dev when sources change.", ["build-dev"], function () {
-  gulp.watch(path.join(config.srcFullPath, "**/*"), ["build-dev"]);
+  gulp.watch(path.join(config.frontendFullPath, "**/*"), ["build-dev"]);
 });
 
 
@@ -70,8 +70,8 @@ gulp.task("clean", false, function (cb) {
 
 gulp.task("copy", false, function () {
   return gulp.src(
-    path.join(config.srcFullPath, config.assets, "**/*"),
-    { base: path.join(config.srcFullPath, config.assets) }
+    path.join(config.frontendFullPath, config.assets, "**/*"),
+    { base: path.join(config.frontendFullPath, config.assets) }
   ).pipe(gulp.dest(config.destFullPath));
 });
 
@@ -79,7 +79,7 @@ gulp.task("lint", "Lint application- and test-code.", function () {
   var success = true;
 
   return gulp.src([
-    path.join(config.srcFullPath, "**/*.js"),
+    path.join(config.frontendFullPath, "**/*.js"),
     path.join(config.root, config.spec, "**/*.js"),
     path.join(config.root, "*.js")
   ])
@@ -115,7 +115,7 @@ gulp.task("reload:server", false, function () {
  */
 
 gulp.task("build:css", "Build CSS.", function () {
-  return gulp.src(path.join(config.srcFullPath, config.styles, "*"))
+  return gulp.src(path.join(config.frontendFullPath, config.styles, "*"))
     .pipe(stylus({
       set: ["compress"],
       define: { "ie8": true }

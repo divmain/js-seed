@@ -3,7 +3,7 @@ var path = require("path");
 module.exports = {
   src: "frontend",
   dest: "frontend-dist",
-  srcFullPath: path.join(__dirname, "frontend"),
+  frontendFullPath: path.join(__dirname, "frontend"),
   destFullPath: path.join(__dirname, "frontend-dist"),
   root: __dirname,
 

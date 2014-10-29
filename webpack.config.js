@@ -5,7 +5,7 @@ var
   config = require("./project.config");
 
 module.exports = {
-  context: config.srcFullPath,
+  context: config.frontendFullPath,
   cache: true,
   entry: {
     main: "./js/main.js"
