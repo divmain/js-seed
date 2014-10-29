@@ -41,8 +41,8 @@ gulp.task("watch", "Perform build-dev when sources change.", ["build-dev"], func
  * Component Tasks
  */
 
-require("./tasks/clean");
-require("./tasks/frontend-copy");
+require("./tasks/clean")(gulp, config);
+require("./tasks/frontend-copy")(gulp, config);
 require("./tasks/lint")(gulp, config);
 require("./tasks/frontend-build-css")(gulp, config);
 require("./tasks/frontend-build-js")(gulp, webpackConfig);
