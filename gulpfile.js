@@ -58,7 +58,7 @@ gulp.task("watch", "Perform build-dev when sources change.", ["build-dev"], func
  * Component Tasks
  */
 
-gulp.task("clean", function (cb) {
+gulp.task("clean", false, function (cb) {
   del([
     path.join(config.dest, "**")
   ], cb);
