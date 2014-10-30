@@ -27,7 +27,10 @@ module.exports = function (gulp, config) {
       }))
       .pipe(eslint.format())
       .on("end", function () {
-        if (!success) {
+        if (success) {
+          gutil.log("[lint]", "SUCCESS!");
+          cb();
+        } else {
           cb(new gutil.PluginError("lint", "*** FAILED ESLINT ***"));
         }
       });
