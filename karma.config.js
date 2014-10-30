@@ -3,7 +3,7 @@ var
 
 var
   projectConfig = require("./project.config"),
-  webpackConfig = require("./webpack.config");
+  webpackConfig = require("./webpack.dev.config");
 
 webpackConfig = _.clone(webpackConfig);
 

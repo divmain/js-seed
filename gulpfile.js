@@ -8,6 +8,7 @@ var
 var
   config = require("./project.config"),
   webpackConfig = require("./webpack.config"),
+  webpackDevConfig = require("./webpack.dev.config"),
   karmaConfig = require("./karma.config");
 
 
@@ -22,8 +23,7 @@ gulp.task("default", false, function () {
   gulp.tasks.help.fn();
 });
 
-gulp.task("build", "Copy assets, build CSS and JS.", ["lint", "test-phantom"], function () {
-  gulp.run("frontend-clean");
+gulp.task("build", "Copy assets, build CSS and JS.", ["frontend-clean"], function () {
   gulp.run("copy");
   gulp.run("build:css");
   gulp.run("build:js");
@@ -51,6 +51,6 @@ require("./tasks/frontend/clean")(gulp, config);
 require("./tasks/frontend/copy")(gulp, config);
 require("./tasks/frontend/build-css")(gulp, config);
 require("./tasks/frontend/build-js")(gulp, webpackConfig);
-require("./tasks/frontend/build-js-dev")(gulp, webpackConfig);
-require("./tasks/frontend/test-browser")(gulp, config, webpackConfig);
+require("./tasks/frontend/build-js-dev")(gulp, webpackDevConfig);
+require("./tasks/frontend/test-browser")(gulp, config, webpackDevConfig);
 require("./tasks/frontend/test-karma")(gulp, config, karmaConfig);

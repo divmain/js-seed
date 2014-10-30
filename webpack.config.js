@@ -2,33 +2,36 @@ var
   path = require("path");
 
 var
+  webpack = require("webpack");
+
+var
   config = require("./project.config");
 
 module.exports = {
   context: config.frontendFullPath,
-  cache: true,
   entry: {
     main: "./js/main.js"
   },
   output: {
     path: path.join(config.destFullPath, config.js),
     filename: "[name].bundle.js",
-    chunkFilename: "[id].bundle.js",
-    sourceMapFilename: "[file].map",
-    hotUpdateMainFilename: "updates/[hash]/update.json",
-    hotUpdateChunkFilename: "updates/[hash]/js/[id].update.js"
+    chunkFilename: "[id].bundle.js"
   },
-  recordsOutputPath: path.join(__dirname, "records.json"),
   module: {
     loaders: [
       { test: /\.css$/, loader: "style-loader!css-loader" },
       { test: /\.styl$/, loader: "style-loader!css-loader!autoprefixer-loader!stylus-loader" },
-      { test: /\.tmpl$/, loader: "raw" },
-      { test: /sinon\.js$/, loader: "imports?define=>false" }
+      { test: /\.tmpl$/, loader: "raw" }
     ]
   },
   resolve: {
     root: config.root
   },
-  plugins: []
+  plugins: [
+    new webpack.DefinePlugin({
+      "ENVIRONMENT": JSON.stringify("PROD")
+    }),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin()
+  ]
 };

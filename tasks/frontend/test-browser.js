@@ -16,8 +16,6 @@ module.exports = function (gulp, config, webpackConfig) {
       "webpack/hot/dev-server",
       "mocha!" + path.join(config.root, config.testRunner)
     ]};
-    wpConfig.debug = true;
-    wpConfig.devtool = "source-map";
 
     wpConfig.plugins.push(new webpack.HotModuleReplacementPlugin());
 

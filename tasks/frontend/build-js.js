@@ -7,16 +7,6 @@ module.exports = function (gulp, webpackConfig) {
   gulp.task("build:js", "Build minified JS.", function (callback) {
     var webpackConf = _.cloneDeep(webpackConfig);
 
-    webpackConf.plugins = webpackConf.plugins.concat([
-      new webpack.DefinePlugin({
-        "process.env": {
-          "NODE_ENV": JSON.stringify("production")
-        }
-      }),
-      new webpack.optimize.DedupePlugin(),
-      new webpack.optimize.UglifyJsPlugin()
-    ]);
-
     webpack(webpackConf, function (err, stats) {
       if (err) {
         throw new gutil.PluginError("build:js", err);
