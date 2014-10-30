@@ -1,7 +1,4 @@
 var
-  path = require("path");
-
-var
   _ = require("lodash"),
   karma = require("karma").server;
 
