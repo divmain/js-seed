@@ -1,7 +1,7 @@
 {
   "name": "js-seed",
   "description": "",
-  "version": "0.0.0",
+  "version": "0.6.0",
   "author": "Dale Bustad <dale@divmain.com>",
   "homepage": "https://github.com/divmain/js-seed",
   "bugs": {
@@ -14,13 +14,12 @@
     "autoprefixer-loader": "1.0.0",
     "chai": "1.9.2",
     "css-loader": "0.9.0",
-    "del": "^0.1.3",
+    "del": "0.1.3",
     "gulp": "3.8.9",
     "gulp-autoprefixer": "1.0.1",
     "gulp-eslint": "0.1.8",
     "gulp-help": "1.1.0",
     "gulp-karma": "0.0.4",
-    "gulp-mocha": "1.1.1",
     "gulp-stylus": "1.3.3",
     "gulp-util": "3.0.1",
     "gulp-webserver": "0.8.4",
