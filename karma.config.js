@@ -31,6 +31,13 @@ module.exports = {
   captureTimeout: 60000,
   singleRun: true,
 
+  // - OFF
+  // - ERROR
+  // - WARN
+  // - INFO (default)
+  // - DEBUG
+  logLevel: "WARN",
+
   // - Chrome (karma-chrome-launcher)
   // - Firefox (karma-firefox-launcher)
   // - Opera (karma-opera-launcher)
