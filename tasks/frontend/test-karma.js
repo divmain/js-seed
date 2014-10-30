@@ -2,15 +2,17 @@ var
   path = require("path");
 
 var
+  _ = require("lodash"),
   karma = require("karma").server;
 
-module.exports = function (gulp, config) {
+module.exports = function (gulp, config, karmaConfig) {
   gulp.task("test-karma", "Auto-run unit tests in multiple browsers.", function (done) {
-    karma.start({
-      configFile: path.join(config.root, config.karmaConfig),
-      browsers: ["Chrome", "Firefox", "Safari"],
-      singleRun: true
-    }, function (err) {
+    var karmaConf = _.cloneDeep(karmaConfig);
+
+    karmaConf.browsers = ["Chrome", "Firefox", "Safari"];
+    karmaConf.singleRun = true;
+
+    karma.start(karmaConf, function (err) {
       if (err) {
         done(err);
         process.exit(1);
@@ -21,11 +23,39 @@ module.exports = function (gulp, config) {
   });
 
   gulp.task("test-phantom", "Run browser unit tests in the console.", function (done) {
-    karma.start({
-      configFile: path.join(config.root, config.karmaConfig),
-      browsers: ["PhantomJS"],
-      singleRun: true
-    }, function (err) {
+    var karmaConf = _.cloneDeep(karmaConfig);
+
+    karmaConf.browsers = ["PhantomJS"];
+    karmaConf.singleRun = true;
+
+    karma.start(karmaConf, function (err) {
+      if (err) {
+        done(err);
+        process.exit(1);
+      }
+      done();
+      process.exit(0);
+    });
+  });
+
+  gulp.task("test-phantom-coverage", "Run browser unit tests in the console.", function (done) {
+    var karmaConf = _.cloneDeep(karmaConfig);
+
+    karmaConf.webpack.module.postLoaders = [{
+      test: /\.js$/,
+      exclude: /(spec|node_modules)\//,
+      loader: "istanbul-instrumenter"
+    }];
+
+    karmaConf.browsers = ["PhantomJS"];
+    karmaConf.singleRun = true;
+    karmaConf.plugins.push(require("karma-coverage"));
+    karmaConf.reporters.push("coverage");
+    karmaConf.coverageReporter = {
+      type: "text"
+    };
+
+    karma.start(karmaConf, function (err) {
       if (err) {
         done(err);
         process.exit(1);
@@ -36,11 +66,12 @@ module.exports = function (gulp, config) {
   });
 
   gulp.task("test-watch", "Run browser tests in console; run again on change.", function (done) {
-    karma.start({
-      configFile: path.join(config.root, config.karmaConfig),
-      browsers: ["PhantomJS"],
-      singleRun: false
-    }, function (err) {
+    var karmaConf = _.cloneDeep(karmaConfig);
+
+    karmaConf.browsers = ["PhantomJS"];
+    karmaConf.singleRun = false;
+
+    karma.start(karmaConf, function (err) {
       if (err) {
         done(err);
         process.exit(1);

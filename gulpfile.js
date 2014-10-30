@@ -7,7 +7,8 @@ var
 
 var
   config = require("./project.config"),
-  webpackConfig = require("./webpack.config");
+  webpackConfig = require("./webpack.config"),
+  karmaConfig = require("./karma.config");
 
 
 gulpHelp(gulp); // Update `gulp.task` signature to take task descriptions.
@@ -52,4 +53,4 @@ require("./tasks/frontend/build-css")(gulp, config);
 require("./tasks/frontend/build-js")(gulp, webpackConfig);
 require("./tasks/frontend/build-js-dev")(gulp, webpackConfig);
 require("./tasks/frontend/test-browser")(gulp, config, webpackConfig);
-require("./tasks/frontend/test-karma")(gulp, config);
+require("./tasks/frontend/test-karma")(gulp, config, karmaConfig);
