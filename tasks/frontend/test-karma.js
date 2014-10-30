@@ -46,7 +46,7 @@ module.exports = function (gulp, config, karmaConfig) {
 
     karmaConf.browsers = ["PhantomJS"];
     karmaConf.singleRun = true;
-    karmaConf.plugins.push(require("karma-coverage"));
+    karmaConf.plugins.push(require("karma-js-coverage"));
     karmaConf.reporters.push("coverage");
     karmaConf.coverageReporter = {
       type: "text"
