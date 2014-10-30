@@ -2,14 +2,13 @@ var
   path = require("path");
 
 var
-  _ = require("lodash"),
   openUrl = require("open"),
   gutil = require("gulp-util"),
   webpack = require("webpack"),
   WebpackDevServer = require("webpack-dev-server");
 
 module.exports = function (gulp, config, webpackConfig) {
-  var _frontendTest = function (includeCoverage) {
+  gulp.task("test", "Run unit tests in the browser.", function () {
     var server,
       wpConfig = Object.create(webpackConfig);
 
@@ -19,13 +18,6 @@ module.exports = function (gulp, config, webpackConfig) {
     ]};
     wpConfig.debug = true;
     wpConfig.devtool = "source-map";
-
-    if (includeCoverage) {
-      wpConfig.module.postLoaders = [{
-        test: /^((?!(\/spec\/|\/node_modules\/)).)*$/,
-        loader: "coverjs-loader"
-      }];
-    }
 
     wpConfig.plugins.push(new webpack.HotModuleReplacementPlugin());
 
@@ -45,9 +37,5 @@ module.exports = function (gulp, config, webpackConfig) {
     });
 
     return server;
-  };
-
-  gulp.task("test", "Run unit tests in the browser.", _.partial(_frontendTest, false));
-  gulp.task("test-coverage", "Run unit tests in browser, include coverage.",
-    _.partial(_frontendTest, true));
+  });
 };
