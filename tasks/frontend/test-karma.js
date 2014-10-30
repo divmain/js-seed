@@ -35,7 +35,7 @@ module.exports = function (gulp, config, karmaConfig) {
     });
   });
 
-  gulp.task("test-phantom-coverage", "Run browser unit tests in the console.", function (done) {
+  gulp.task("test-coverage", "Run browser unit tests in the console.", function (done) {
     var karmaConf = _.cloneDeep(karmaConfig);
 
     karmaConf.webpack.module.postLoaders = [{
