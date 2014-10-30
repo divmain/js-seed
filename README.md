@@ -30,7 +30,7 @@ npm install
     - [Chai](http://chaijs.com/) - assertion framework
     - [Sinon.JS](http://sinonjs.org) - spies, stubs, and mocks
     - [Karma](http://karma-runner.github.io/) - automated testing in multiple browsers (Chrome, Firefox, Sarafi enabled by default) and in the console
-    - [CoverJs](https://github.com/webpack/coverjs-loader) - code coverage statistics for your tests
+    - [Istanbul](http://gotwarlost.github.io/istanbul/) - test code coverage
 - Libraries
     - [Lo-Dash](http://lodash.com) - utility library, an alternative to Underscore.js
 - CSS
@@ -42,7 +42,7 @@ npm install
 To get started, type `gulp` or `gulp help` into your console.  You should see something like the following:
 
 ```text
-[gulp] Starting 'help'...
+[23:19:40] Starting 'help'...
 
 Usage
   gulp [task]
@@ -52,34 +52,39 @@ Available tasks
   build-dev      Build, but with unminified JS + sourcemaps.
   build:css      Build CSS.
   build:js       Build minified JS.
-  build:js-dev   Build unminified JS, including sourcemaps.
+  build:js-dev   Build unminified JS with sourcemaps.
   help           Display this help text.
   lint           Lint application- and test-code.
   test           Run unit tests in the browser.
-  test-coverage  Run unit tests in browser, include coverage.
+  test-coverage  Run browser unit tests in the console.
   test-karma     Auto-run unit tests in multiple browsers.
   test-phantom   Run browser unit tests in the console.
-  test-watch     Run browser unit tests in console, run again on change.
+  test-watch     Run browser tests in console; run again on change.
   watch          Perform build-dev when sources change.
 
-[gulp] Finished 'help' after 1.32 ms
+[23:19:40] Finished 'help' after 1.48 ms
 ```
 
 
 ## Project Layout
 
-| File/Directory              | Description                            |
-| ----                        | ----                                   |
-| start.sh                    | Quick-start script.                    |
-| gulpfile.js                 | Defines all tasks for gulp.            |
-| project.config.js           | Defines paths and other global config. |
-| karma.conf.js               | Karma configuration.                   |
-| webpack.config.js           | Webpack configuration.                 |
-| .eslintrc                   | JavaScript linting rules.              |
-| frontend/                   | Application code.                      |
-| frontend/assets/            | Static files.                          |
-| frontend/js/                | Application JS files.                  |
-| frontend/styles/            | Stylus files.                          |
-| frontend/spec/js/           | All tests.                             |
-| frontend/spec/test-entry.js | All tests should be required in here.  |
-| frontend-dist/              | Builds are generated here.             |
+| File/Directory               | Description                             |
+| ----                         | ----                                    |
+| start.sh                     | Quick-start script.                     |
+| gulpfile.js                  | High-level definitions for gulp tasks.  |
+| project.config.js            | Defines paths and other global config.  |
+| karma.conf.js                | Karma configuration.                    |
+| webpack.config.js            | Webpack configuration.                  |
+| webpack.dev.config.js        | Webpack configuration for dev tasks.    |
+| .eslintrc                    | JavaScript linting rules.               |
+| wercker.yml                  | Wercker CI configuration.               |
+| frontend/                    | Application code.                       |
+| frontend/assets/             | Static files.                           |
+| frontend/js/                 | Application JS files.                   |
+| frontend/styles/             | Stylus files.                           |
+| frontend-dist/               | Builds are generated here.              |
+| tasks/                       | Component gulp tasks                    |
+| spec/                        | Test files and instrumentation.         |
+| spec/frontend/test-runner.js | Configures test libraries.              |
+| spec/frontend/test-entry.js  | All spec files should be required here. |
+| spec/frontend/js             | Tests for `frontend/js` dir.            |
