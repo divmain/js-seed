@@ -52,7 +52,7 @@
   },
   "scripts": {
     "start": "gulp",
-    "test": "gulp lint && gulp test-phantom-coverage"
+    "test": "gulp lint && gulp test-phantom"
   },
   "engines": {
     "node": ">= 0.10.0"
