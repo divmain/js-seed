@@ -12,9 +12,9 @@ delete webpackConfig.entry;
 module.exports = {
   basePath: projectConfig.root,
   frameworks: ["mocha"],
-  files: [ "spec/frontend/test-runner.js" ],
+  files: [ "frontend/test-runner.js" ],
   exclude: [],
-  preprocessors: { "spec/frontend/**/*.js": ["webpack"] },
+  preprocessors: { "frontend/**/*.js": ["webpack"] },
   webpack: webpackConfig,
   webpackServer: {
     hot: true,

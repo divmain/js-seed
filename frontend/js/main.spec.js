@@ -1,4 +1,4 @@
-var main = require("frontend/js/main");
+var main = require("./main");
 var sandbox;
 
 describe("the main thing", function () {

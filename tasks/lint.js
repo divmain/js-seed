@@ -14,7 +14,6 @@ module.exports = function (gulp, config) {
 
     gulp.src([
       path.join(config.frontendFullPath, "**/*.js"),
-      path.join(config.root, config.spec, "**/*.js"),
       path.join(config.root, "*.js"),
       path.join(config.root, "tasks/**/*.js")
     ])
