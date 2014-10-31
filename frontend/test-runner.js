@@ -1,5 +1,7 @@
 var _ = require("lodash");
-var requireCxt = require.context(".", true, /\.spec\.js$/);
+// https://github.com/webpack/docs/wiki/context/
+//   71f80252750e1d8f4b6b40395855e0dd5cca6d12#requirecontext
+var specFileRequire = require.context(".", true, /\.spec\.js$/);
 
 // polyfill Object.keys for IE<=8
 if (!Object.keys) {
@@ -11,6 +13,6 @@ window.expect = window.chai.expect;
 window.sinon = require("sinon");
 window.chai.use(require("sinon-chai"));
 
-_.each(requireCxt.keys(), function (specFileName) {
-  requireCxt(specFileName);
+_.each(specFileRequire.keys(), function (specFileName) {
+  specFileRequire(specFileName);
 });
