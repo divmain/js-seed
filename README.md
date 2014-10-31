@@ -68,23 +68,20 @@ Available tasks
 
 ## Project Layout
 
-| File/Directory               | Description                             |
-| ----                         | ----                                    |
-| start.sh                     | Quick-start script.                     |
-| gulpfile.js                  | High-level definitions for gulp tasks.  |
-| project.config.js            | Defines paths and other global config.  |
-| karma.conf.js                | Karma configuration.                    |
-| webpack.config.js            | Webpack configuration.                  |
-| webpack.dev.config.js        | Webpack configuration for dev tasks.    |
-| .eslintrc                    | JavaScript linting rules.               |
-| wercker.yml                  | Wercker CI configuration.               |
-| frontend/                    | Application code.                       |
-| frontend/assets/             | Static files.                           |
-| frontend/js/                 | Application JS files.                   |
-| frontend/styles/             | Stylus files.                           |
-| frontend-dist/               | Builds are generated here.              |
-| tasks/                       | Component gulp tasks                    |
-| spec/                        | Test files and instrumentation.         |
-| spec/frontend/test-runner.js | Configures test libraries.              |
-| spec/frontend/test-entry.js  | All spec files should be required here. |
-| spec/frontend/js             | Tests for `frontend/js` dir.            |
+| File/Directory          | Description                                                     |
+| ----                    | ----                                                            |
+| start.sh                | Quick-start script.                                             |
+| gulpfile.js             | High-level definitions for gulp tasks.                          |
+| project.config.js       | Defines paths and other global config.                          |
+| karma.conf.js           | Karma configuration.                                            |
+| webpack.config.js       | Webpack configuration.                                          |
+| webpack.dev.config.js   | Webpack configuration for dev tasks.                            |
+| .eslintrc               | JavaScript linting rules.                                       |
+| wercker.yml             | Wercker CI configuration.                                       |
+| frontend/               | Application and test code.                                      |
+| frontend/assets/        | Static files.                                                   |
+| frontend/js/            | Application JS files.  Each `.js` has a `.spec.js` counterpart. |
+| frontend/styles/        | Stylus files.                                                   |
+| frontend/test-runner.js | Configures and executes tests.                                  |
+| frontend-dist/          | Builds are generated here.                                      |
+| tasks/                  | Component gulp tasks                                            |
