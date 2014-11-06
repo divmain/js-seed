@@ -1,24 +1,32 @@
 # Javascript Seed Project
 
-A place for starting new front-end JS projects.  Just clone and go.
+A place for starting new front-end JS projects. Just clone and go.
 
 This project is agnostic in regards to your framework or implementation, but provides a straight-forward build-and-test stack to help you get started.
 
 
 ## Quick Start
 
-To begin a new project, run the following commands in your terminal window:
+##### Clone into a new project
 
-```
-cd YOUR_WORKING_DIR
-git clone https://github.com/divmain/js-seed.git PROJECT_NAME
-cd PROJECT_NAME/
-./start.sh
+```bash
+cd <YOUR_WORKING_DIRECTORY>
+git clone https://github.com/divmain/js-seed.git <YOUR_PROJECT_NAME>
+cd <YOUR_PROJECT_NAME>
 npm install
 ```
 
-`start.sh` will remove the js-seed README and itself.  It will also re-initialize git for the project directory and optionally create a new remote repository for you in GitHub or BitBucket.
+#### [Optional] Use the `start.sh` script to help bootstrap your project
 
+
+`start.sh` is a small CLI that can do the following:
+* Create a new remote repository on [Github](https://github.com/) or [Bitbucket](https://bitbucket.org/)
+* Re-initialize git for the project
+* Remove the `README.md` and `start.sh`
+
+```bash
+./start.sh
+```
 
 ## Stack
 
