@@ -41,6 +41,7 @@
     "mocha-loader": "0.7.0",
     "open": "0.0.5",
     "raw-loader": "0.5.1",
+    "require-dir": "^0.1.0",
     "script-loader": "0.6.0",
     "sinon": "1.9.1",
     "sinon-chai": "2.5.0",

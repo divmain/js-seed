@@ -1,22 +1,15 @@
+/*
+  Rather than manage one giant gulpfile, each task has been broken out into its own file in the
+  tasks directory. Any files in that directory get automatically required by the line below.
+  To add a new task, simply add a new task file that directory.
+*/
+
 var
   gulp = require("gulp"),
-  gulpHelp = require("gulp-help");
+  gulpHelp = require("gulp-help"),
+  requireDir = require("require-dir");
 
-var
-  config = require("./project.config"),
-  webpackConfig = require("./webpack.config"),
-  webpackDevConfig = require("./webpack.dev.config"),
-  karmaConfig = require("./karma.config");
+// Update `gulp.task` signature to take task descriptions.
+gulpHelp(gulp);
 
-
-gulpHelp(gulp); // Update `gulp.task` signature to take task descriptions.
-
-require("./tasks/composite")(gulp, config);
-require("./tasks/lint")(gulp, config);
-require("./tasks/frontend/clean")(gulp, config);
-require("./tasks/frontend/copy")(gulp, config);
-require("./tasks/frontend/build-css")(gulp, config);
-require("./tasks/frontend/build-js")(gulp, webpackConfig);
-require("./tasks/frontend/build-js-dev")(gulp, webpackDevConfig);
-require("./tasks/frontend/test-browser")(gulp, config, webpackDevConfig);
-require("./tasks/frontend/test-karma")(gulp, config, karmaConfig);
+requireDir("./tasks", {recurse: true});
