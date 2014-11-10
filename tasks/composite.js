@@ -1,26 +1,30 @@
 var
   path = require("path");
 
-module.exports = function(gulp, config) {
-  gulp.task("default", false, function () {
-    gulp.tasks.help.fn();
-  });
+var
+  gulp = require("gulp");
 
-  gulp.task("build", "Copy assets, build CSS and JS.", ["frontend-clean"], function () {
+var
+  config = require("../project.config");
+
+gulp.task("default", false, function () {
+  gulp.tasks.help.fn();
+});
+
+gulp.task("build", "Copy assets, build CSS and JS.", ["frontend-clean"], function () {
+  gulp.run("copy");
+  gulp.run("build:css");
+  gulp.run("build:js");
+});
+
+gulp.task("build-dev", "Build, but with unminified JS + sourcemaps.", ["frontend-clean"],
+  function () {
     gulp.run("copy");
     gulp.run("build:css");
-    gulp.run("build:js");
-  });
+    gulp.run("build:js-dev");
+  }
+);
 
-  gulp.task("build-dev", "Build, but with unminified JS + sourcemaps.", ["frontend-clean"],
-    function () {
-      gulp.run("copy");
-      gulp.run("build:css");
-      gulp.run("build:js-dev");
-    }
-  );
-
-  gulp.task("watch", "Perform build-dev when sources change.", ["build-dev"], function () {
-    gulp.watch(path.join(config.frontendFullPath, "**/*"), ["build-dev"]);
-  });
-};
+gulp.task("watch", "Perform build-dev when sources change.", ["build-dev"], function () {
+  gulp.watch(path.join(config.frontendFullPath, "**/*"), ["build-dev"]);
+});
