@@ -5,11 +5,10 @@ var
   gulp = require("gulp"),
   del = require("del");
 
-var
-  config = require("../../project.config");
-
-gulp.task("frontend-clean", false, function (cb) {
-  del([
-    path.join(config.dest, "**")
-  ], cb);
-});
+module.exports = function(config) {
+  gulp.task("frontend-clean", false, function (cb) {
+    del([
+      path.join(config.dest, "**")
+    ], cb);
+  });
+};

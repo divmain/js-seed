@@ -14,5 +14,7 @@ module.exports = {
   karmaConfig: "karma.conf.js",
 
   port: 3000,
-  testPort: 3001
+  testPort: 3001,
+
+  env: process.env.NODE_ENV || 'dev'
 };
