@@ -1,15 +1,8 @@
 var
-  gulp = require("gulp"),
-  gulpHelp = require("gulp-help");
-
-var
   config = require("./project.config"),
   webpackConfig = require("./webpack.config"),
   webpackDevConfig = require("./webpack.dev.config"),
   karmaConfig = require("./karma.config");
-
-
-gulpHelp(gulp); // Update `gulp.task` signature to take task descriptions.
 
 require("./tasks/composite")(gulp, config);
 require("./tasks/lint")(gulp, config);
