@@ -50,7 +50,6 @@
     "webpack-dev-server": "1.6.5"
   },
   "scripts": {
-    "start": "gulp",
     "test": "gulp lint && gulp test-phantom"
   },
   "engines": {
