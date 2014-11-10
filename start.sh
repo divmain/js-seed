@@ -43,6 +43,7 @@ echo -n "cleaning up... "
 
 rm -f $CURRENTDIR/start.sh
 rm -f $CURRENTDIR/README.md
+rm -f $CURRENTDIR/LICENSE
 rm -rf $CURRENTDIR/.git
 echo "OK"
 
