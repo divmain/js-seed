@@ -93,3 +93,9 @@ Available tasks
 | frontend/test-runner.js | Configures and executes tests.                                  |
 | frontend-dist/          | Builds are generated here.                                      |
 | tasks/                  | Component gulp tasks                                            |
+
+***
+
+## License
+
+[MIT License](http://opensource.org/licenses/MIT)
