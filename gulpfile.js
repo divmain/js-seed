@@ -29,7 +29,7 @@ var injectConfig = function (gulpTasks, config) {
       if (_.isFunction(gulpTasks[task])) {
         gulpTasks[task](config);
       } else {
-        injectConfig(gulpTasks[task]);
+        injectConfig(gulpTasks[task], config);
       }
     }
   }
