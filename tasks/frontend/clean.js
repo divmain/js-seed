@@ -10,6 +10,6 @@ var
 
 gulp.task("frontend-clean", false, function (cb) {
   del([
-    path.join(config.dest, "**")
+    path.join(config.dest, "/**/*")
   ], cb);
 });
