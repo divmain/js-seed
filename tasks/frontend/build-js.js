@@ -5,18 +5,26 @@ var
   webpack = require("webpack");
 
 var
+  webpackDevConfig = require("../../webpack.dev.config"),
   webpackConfig = require("../../webpack.config");
 
-gulp.task("build:js", "Build minified JS.", function (callback) {
-  var webpackConf = _.cloneDeep(webpackConfig);
-
-  webpack(webpackConf, function (err, stats) {
-    if (err) {
-      throw new gutil.PluginError("build:js", err);
+module.exports = function(config) {
+  gulp.task("build:js", "Build JavaScript.", function (callback) {
+    var webpackConf;
+    if (config.env === "production") {
+      webpackConf = _.cloneDeep(webpackConfig);
+    } else {
+      webpackConf = _.cloneDeep(webpackDevConfig);
     }
-    gutil.log("[build:js]", stats.toString({
-      colors: true
-    }));
-    callback();
+
+    webpack(webpackConf, function (err, stats) {
+      if (err) {
+        throw new gutil.PluginError("build:js", err);
+      }
+      gutil.log("[build:js]", stats.toString({
+        colors: true
+      }));
+      callback();
+    });
   });
-});
+};
