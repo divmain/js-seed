@@ -168,7 +168,7 @@ rules:
 
     ###########################################################################
     #                                                                         #
-    #   VARIABLES: these rules have to do with variable declarations.         #
+    #   NODE: these rules relate to functionality provided in Node.js.        #
     #                                                                         #
     ###########################################################################
 
