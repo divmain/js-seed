@@ -12,4 +12,4 @@ var
 // Update `gulp.task` signature to take task descriptions.
 gulpHelp(gulp);
 
-requireDir("./tasks", {recurse: true});
+requireDir("./gulp-tasks", {recurse: true});
