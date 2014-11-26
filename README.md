@@ -87,8 +87,8 @@ Before going any further, you should be introduced to the tools that you have at
     - [Karma](http://karma-runner.github.io/) - automated testing in multiple browsers (Chrome, Firefox, Sarafi enabled by default) and in the console
     - [Istanbul](http://gotwarlost.github.io/istanbul/) - test code coverage
 - Libraries
-    - [Lo-Dash](http://lodash.com) - utility library, an alternative to Underscore.js
-- CSS (this is used for the build and need not be used in your application)
+    - [Lo-Dash](http://lodash.com) - utility library, an alternative to Underscore.js (this is used for the build and need not be used in your application)
+- CSS
     - [Stylus](http://learnboost.github.io/stylus/) - expressive CSS pre-processor
     - [Autoprefixer](https://github.com/ai/autoprefixer) - automatic vendor prefix handling
 
