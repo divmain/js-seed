@@ -4,6 +4,16 @@ DO_BITBUCKET=false
 
 ###############
 
+echo
+echo "which license would you like to use for this new project?"
+echo " (1) MIT"
+echo " (2) GPLv3"
+echo " (3) Apache"
+echo " (4) none, or I will add it later"
+read -r -p "selection: " -n 1 LICENSE_TYPE
+echo
+echo
+
 read -r -p "would you like to create a new remote repo (y/n)? " -n 1 DO_REMOTE
 echo
 if [[ $DO_REMOTE =~ ^[Yy]$ ]]; then
@@ -20,22 +30,16 @@ if [[ $DO_REMOTE =~ ^[Yy]$ ]]; then
     read -s -p "password: " PASSWORD
     echo
 fi
+echo
 
-# echo "does your project have,"
-# echo " (1) a browser-based component,"
-# echo " (2) a Node.js-based component, or"
-# echo " (3) both?"
-# read -r -p "> " -n 1 PROJECT_TYPE
-
-###############
-
-# if [ "$PROJECT_TYPE" == "1" ]; then
-#     # TODO: switch to browser-only branch
-# fi
-
-# if [ "$PROJECT_TYPE" == "2" ]; then
-#     # TODO: switch to node-only branch
-# fi
+echo "which continuous integration service will you be using?"
+echo " (1) travis-ci.com"
+echo " (2) wercker.com"
+echo " (3) neither"
+echo " (4) keep both config files, I'm not sure yet"
+read -r -p "selection: " -n 1 CI_SELECTION
+echo
+echo
 
 ###############
 
@@ -45,6 +49,31 @@ rm -f $CURRENTDIR/start.sh
 rm -f $CURRENTDIR/README.md
 rm -f $CURRENTDIR/LICENSE
 rm -rf $CURRENTDIR/.git
+
+echo "OK"
+
+###############
+
+echo -n "configuring license and CI files... "
+
+if [[ $LICENSE_TYPE = "1" ]]; then
+    cp LICENSE.mit LICENSE
+elif [[ $LICENSE_TYPE = "2" ]]; then
+    cp LICENSE.gpl LICENSE
+elif [[ $LICENSE_TYPE = "3" ]]; then
+    cp LICENSE.apache LICENSE
+fi
+
+rm -f LICENSE.*
+
+if [[ $CI_SELECTION = "1" ]]; then
+    rm ./wercker.yml
+elif [[ $CI_SELECTION = "2" ]]; then
+    rm ./.travis.yml
+elif [[ $CI_SELECTION = "3" ]]; then
+    rm -f ./wercker.yml ./.travis.yml
+fi
+
 echo "OK"
 
 ###############
@@ -92,5 +121,3 @@ if $DO_BITBUCKET; then
 fi
 
 ###############
-
-## TODO: run `npm install`
