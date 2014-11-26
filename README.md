@@ -13,7 +13,8 @@ Ideally,
 This project aims to:
 
 - Be narrow in scope, providing only build and test infrastructure, remaining agnostic to frontend libraries or frameworks;
-- Ease the developer experience, by providing a well documented and discoverable build; and
+- Ease the developer experience, by providing a well documented and discoverable build;
+- Serve as an educational tool for developers unfamiliar with one or more of the tools utilized here; and
 - Provide a foundation for a variety of frontend applications.
 
 
