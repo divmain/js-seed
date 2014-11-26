@@ -2,8 +2,6 @@
 
 One of the most common blockers to starting a new project is boilerplate.  Not many of us want to spend days setting up build and test infrastructure - we want to get coding while the idea is fresh.
 
-This is a well known problem with a number of existing solutions (see [Yeoman](http://yeoman.io/), [Slush](http://slushjs.github.io/), [Brunch](http://brunch.io/), et al).  However, my experience with many of these projects has fallen short, because although the generated code works, it is often opaque or out of date and hard to fix when something goes wrong.
-
 Ideally,
 
 - Starting a new frontend project should take less than 5 minutes.
@@ -16,7 +14,7 @@ This project aims to:
 
 - Be narrow in scope, providing only build and test infrastructure, remaining agnostic to frontend libraries or frameworks;
 - Ease the developer experience, by providing a well documented and discoverable build; and
-- Provide a solid foundation for an array for frontend projects.
+- Provide a foundation for a variety of frontend applications.
 
 
 ## Getting Started
@@ -89,7 +87,7 @@ Before going any further, you should be introduced to the tools that you have at
     - [Istanbul](http://gotwarlost.github.io/istanbul/) - test code coverage
 - Libraries
     - [Lo-Dash](http://lodash.com) - utility library, an alternative to Underscore.js
-- CSS
+- CSS (this is used for the build and need not be used in your application)
     - [Stylus](http://learnboost.github.io/stylus/) - expressive CSS pre-processor
     - [Autoprefixer](https://github.com/ai/autoprefixer) - automatic vendor prefix handling
 
@@ -130,6 +128,7 @@ As a convenience, this seed project provides easy mechanisms to write templates 
 
 The Webpack configuration also supplies a mechanism to require files as plain text.  This is very useful for accessing templates.  It'll look something like `var myTemplateString = require("./my-template.tmpl");`.  By default, this only works for files with extension `.tmpl`, but new rules can be created in `webpack.config.js`.
 
+Keep in mind that while Stylus support is provided out-of-the-box, plain CSS is also supported.  I'm actively looking into adding support for LESS/SASS alongside Stylus.
 
 ## Project Layout
 
