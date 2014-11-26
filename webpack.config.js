@@ -11,10 +11,10 @@ module.exports = {
   context: config.frontendFullPath,
 
   /**
-   * Based on the configuration in entry and output, a `main.bundle.js` file will
-   * be generated from the file specific in `entry.main` along with its dependencies.
-   * You can create additional entry points and Webpack will intelligently bundle
-   * them for you.
+   * Based on the configuration below, a `main.bundle.js` file will be generated
+   * from the file specified in `entry.main` along with its dependencies. You can
+   * create additional entry points and Webpack will intelligently bundle them
+   * for you.
    */
 
   entry: {

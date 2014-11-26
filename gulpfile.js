@@ -16,7 +16,7 @@ gulpHelp(gulp);
  * own file in the `gulp-tasks` directory.  Any files in that directory will be
  * automatically required by the line below.
  *
- * To add a new task, simple add a new file under `gulp-tasks`.
+ * To add a new task, simply add a new file under `gulp-tasks`.
  */
 
 requireDir("./gulp-tasks", { recurse: true });

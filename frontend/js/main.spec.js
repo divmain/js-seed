@@ -14,8 +14,8 @@ describe("frontend/js/", function () {
     beforeEach(function () {
 
       /**
-       * Before each test is run, we create a new Sinon sandbox that
-       * we can use for stubbing and spying on our application code.
+       * Before each test is run, create a new Sinon sandbox that
+       * can be used for stubbing and spying on our application code.
        */
 
       sandbox = sinon.sandbox.create();

@@ -29,10 +29,10 @@ git clone https://github.com/divmain/js-seed.git <YOUR_PROJECT_NAME>
 cd <YOUR_PROJECT_NAME>
 ```
 
-A quick-start script is provided to help you set things up.  To run it, type `./start.sh` into your console.  It will:
+A quick-start script is provided to help you get things set up.  To run it, type `./start.sh` into your console.  It will:
 
 - clean up all files related to the js-seed project;
-- configure your `package.json` with your name, email and project name;
+- configure `package.json` with your name, email and project name;
 - offer a selection of licenses that you can use for your project, and enter your contact information in the copyright notices;
 - offer a selection of CI integration options;
 - offer to setup a remote [Github](https://github.com/) or [Bitbucket](https://bitbucket.org/) repository; and
@@ -98,6 +98,8 @@ Before going any further, you should be introduced to the tools that you have at
 
 The project is configured in such a way that you can write tests anywhere you want in the `frontend` directory.  Test files will be identified by their extension: `.spec.js`.  To keep things organized, we recommend creating one spec file for each application file, and placing that spec file in the same location.
 
+### Example test and application code
+
 To see this in action, open up `frontend/js/main.js` and `frontend/js/main.spec.js`.  The latter contains code that tests the functionality of the former.
 
 `main.js` is written using the [CommonJs](http://dailyjs.com/2010/10/18/modules/) pattern - you will see that it returns a function.  This function always returns true.  It also calls a function if one is provided.  That sounds like testable functionality!
@@ -105,6 +107,8 @@ To see this in action, open up `frontend/js/main.js` and `frontend/js/main.spec.
 In `main.spec.js`, you will see some comments explaining how things are layed out, and why.  You'll also see a couple of tests that correspond to the functionality we identified.
 
 As you develop your project, keep track of the functionality you're implementing, and write tests!  Then, as requirements change and complexity increases, you can be confident that you haven't broken anything.
+
+### Running tests
 
 To run these tests, we have a few options.  For a terminal-only experience, use `gulp test-phantom`.  This will run your tests in a headless browser, and you'll see the results in your console.  If you run `gulp test-watch`, tests will run once and then wait.  If any of your test or application code changes, they'll run again automatically.
 
@@ -115,16 +119,16 @@ Finally, you can try something more interactive.  Run `gulp test`.  A browser wi
 
 ## Linting Your Code
 
-As a project grows, and especially when multiple developers contribute, it becomes increasingly valuable to enforce a particular code style.  This seed project provides a default code style configuration.  Feel free to modify to fit your preferences (`.eslintrc`); the most important thing is consistency across the project.
+As a project grows, and especially when multiple developers contribute, it becomes increasingly valuable to enforce a particular code style.  This seed project provides a default code style configuration.  Feel free to modify it to fit your preferences (`.eslintrc`); the most important thing is consistency across the project.
 
-To check your code for non-compliance with the code style, as well as sanity checks for common problems, run `gulp lint`.  If all your code conforms, you'll see a `[lint] SUCCESS!` message.  Any problems that are found will be specifically pointed out, followed by `*** FAILED ESLINT ***`.
+To check your code for non-compliance with the code style, as well as running sanity checks for common problems, use `gulp lint`.  If all your code passes, you'll see a `[lint] SUCCESS!` message.  Any problems that are found will be specifically pointed out, followed by `*** FAILED ESLINT ***`.
 
 
 ## Pulling in Templates or Styles
 
-As a convenience, this seed project provides easy mechanisms to write templates and CSS styles.  By default, a `main.styl` file is processed by Stylus into a `main.css` in the output directory.  From inside a JS file, you can also require a module-specific Stylus file (something like `require("./my-view.styl");`), and those styles will automatically be loaded into the browser when the requiring JS module is loaded.
+As a convenience, this seed project provides easy mechanisms to write templates and CSS styles.  By default, `frontend/styles/main.styl` is processed by Stylus and saved as `main.css` in the output directory.  From inside a JS file, you can also require a module-specific Stylus file (something like `require("./my-view.styl");`), and those styles will automatically be loaded into the browser when the requiring JS module is loaded.
 
-The Webpack configuration also supplies a mechanism to require files as plain text.  This is very useful for accessing templates.  It'll look something like `var myTemplate = require("./my-template.tmpl");`.  By default, this only works for files with extension `.tmpl`, but new rules can be created in `webpack.config.js`.
+The Webpack configuration also supplies a mechanism to require files as plain text.  This is very useful for accessing templates.  It'll look something like `var myTemplateString = require("./my-template.tmpl");`.  By default, this only works for files with extension `.tmpl`, but new rules can be created in `webpack.config.js`.
 
 
 ## Project Layout
