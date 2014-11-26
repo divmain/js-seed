@@ -75,7 +75,7 @@ Available tasks
 
 ## The Stack
 
-Before going any further, you should be introduced to the tools that you have at your disposal.  If you come across questions that are unanswered in this README, check the following sites for documentation.
+Before going any further, take a look at the tools that you have at your disposal.  If you come across questions that are unanswered in this README, check the following sites for documentation.
 
 - Build
     - [gulp](http://gulpjs.com/) - a task runner and build tool
