@@ -1,13 +1,8 @@
 {
-  "name": "js-seed",
+  "name": "%PROJECT_NAME%",
   "description": "",
   "version": "1.0.0",
-  "author": "Dale Bustad <dale@divmain.com>",
-  "homepage": "https://github.com/divmain/js-seed",
-  "bugs": {
-    "url": "https://github.com/divmain/js-seed/issues"
-  },
-  "repository": "git://github.com/divmain/js-seed.git",
+  "author": "%NAME% <%EMAIL%>",
   "private": true,
   "dependencies": {},
   "devDependencies": {
@@ -56,5 +51,5 @@
   "engines": {
     "node": ">= 0.10.0"
   },
-  "license": "MIT"
+  "license": "%LICENSE%"
 }

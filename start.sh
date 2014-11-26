@@ -5,6 +5,11 @@ DO_BITBUCKET=false
 ###############
 
 echo
+
+read -p "what is your full name: " FULL_NAME
+read -p "what is your email address: " EMAIL
+echo
+
 echo "which license would you like to use for this new project?"
 echo " (1) MIT"
 echo " (2) GPLv3"
@@ -54,14 +59,24 @@ echo "OK"
 
 ###############
 
-echo -n "configuring license and CI files... "
+echo -n "configuring... "
+
+PROJECT_NAME=$(basename $(pwd))
+sed -i "" "s/%NAME%/$FULL_NAME/g" ./package.json
+sed -i "" "s/%EMAIL%/$EMAIL/g" ./package.json
+sed -i "" "s/%PROJECT_NAME%/$PROJECT_NAME/g" ./package.json
 
 if [[ $LICENSE_TYPE = "1" ]]; then
     cp LICENSE.mit LICENSE
+    sed -i "" "s/%LICENSE%/MIT/g" ./package.json
 elif [[ $LICENSE_TYPE = "2" ]]; then
     cp LICENSE.gpl LICENSE
+    sed -i "" "s/%LICENSE%/GPLv3/g" ./package.json
 elif [[ $LICENSE_TYPE = "3" ]]; then
     cp LICENSE.apache LICENSE
+    sed -i "" "s/%LICENSE%/Apache/g" ./package.json
+else
+    sed -i "" "s/%LICENSE%//g" ./package.json
 fi
 
 rm -f LICENSE.*
@@ -72,6 +87,13 @@ elif [[ $CI_SELECTION = "2" ]]; then
     rm ./.travis.yml
 elif [[ $CI_SELECTION = "3" ]]; then
     rm -f ./wercker.yml ./.travis.yml
+fi
+
+if [[ $LICENSE_TYPE =~ ^[1-3]$ ]]; then
+    YEAR=$(date +"%Y")
+    sed -i "" "s/%YEAR%/$YEAR/g" ./LICENSE
+    sed -i "" "s/%NAME%/$FULL_NAME/g" ./LICENSE
+    sed -i "" "s/%EMAIL%/$EMAIL/g" ./LICENSE
 fi
 
 echo "OK"
