@@ -21,6 +21,8 @@ module.exports = _.merge(webpackConfig, {
 });
 
 module.exports.module.loaders.push({
+  // This override is necessary to make Sinon play nice in the Webpack
+  // environment.  Can be removed with the release of Sinon v2.0.
   test: /sinon\.js$/, loader: "imports?define=>false"
 });
 
