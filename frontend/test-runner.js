@@ -15,6 +15,16 @@ var _ = require("lodash");
 var specFileRequire = require.context(".", true, /\.spec\.js$/);
 
 /**
+ * Object.keys is used by require.context for its `keys` method.
+ * Since this method is not supported in older browsers, polyfill
+ * with _.keys.
+ */
+
+if (!Object.keys) {
+  Object.keys = _.keys;
+}
+
+/**
  * This creates a DOM element with ID "fixtures".  It is visible,
  * but far off to the left of the viewable screen.  When testing
  * your views, they can be mounted here.
