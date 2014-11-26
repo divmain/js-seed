@@ -1,1 +1,4 @@
-module.exports = true;
+module.exports = function (fn) {
+  if (fn) { fn(false); }
+  return true;
+};
