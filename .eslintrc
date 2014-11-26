@@ -163,7 +163,8 @@ rules:
                                    #    /*global */ block
     no-undef-init: 2               # disallow use of undefined when initializing variables
     no-undefined: 2                # disallow use of undefined variable
-    no-unused-vars: 1              # disallow declaration of variables that are not used in the code
+    no-unused-vars: 1              # disallow declaration of variables that are not used in
+                                   #    the code
     no-use-before-define: 2        # disallow use of variables before they are defined
 
     ###########################################################################
@@ -228,7 +229,8 @@ rules:
     space-infix-ops: 2             # require spaces around operators
     space-return-throw-case: 2     # require a space after return, throw, and case
     space-unary-word-ops: 2        # require a space around word operators such as typeof
-    spaced-line-comment: 2         # require or disallow a space immediately following the // in a line comment
+    spaced-line-comment: 2         # require or disallow a space immediately following
+                                   #    the // in a line comment
     wrap-regex: 0                  # require regex literals to be wrapped in parentheses
 
     ###########################################################################
@@ -241,7 +243,8 @@ rules:
 
     max-depth: 0              # specify the maximum depth that blocks can be nested
     max-len: [2, 100, 4]      # specify the maximum length of a line in your program
-    max-params: [1, 3]        # limits the number of parameters that can be used in the function declaration.
+    max-params: [1, 3]        # limits the number of parameters that can be used in the function 
+                              #    declaration
     max-statements: 0         # specify the maximum number of statement allowed in a function
     no-bitwise: 0             # disallow use of bitwise operators
     no-plusplus: 0            # disallow use of unary operators, ++ and --
