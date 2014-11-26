@@ -120,6 +120,13 @@ As a project grows, and especially when multiple developers contribute, it becom
 To check your code for non-compliance with the code style, as well as sanity checks for common problems, run `gulp lint`.  If all your code conforms, you'll see a `[lint] SUCCESS!` message.  Any problems that are found will be specifically pointed out, followed by `*** FAILED ESLINT ***`.
 
 
+## Pulling in Templates or Styles
+
+As a convenience, this seed project provides easy mechanisms to write templates and CSS styles.  By default, a `main.styl` file is processed by Stylus into a `main.css` in the output directory.  From inside a JS file, you can also require in a module-specific Stylus file (something like `require("./my-view.styl");`), and those styles will automatically be loaded into the browser when the requiring JS module is loaded.
+
+The Webpack configuration also supplies a mechanism to require in files as plain text.  This is very useful for accessing templates.  It'll look something like `var myTemplate = require("./my-template.tmpl");`.  By default, this only works for files with extension `.tmpl`, but new rules can be created in `webpack.config.js`.
+
+
 ## Project Layout
 
 | File/Directory          | Description                                                                               |
