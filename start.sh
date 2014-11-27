@@ -62,9 +62,9 @@ echo "OK"
 echo -n "configuring... "
 
 PROJECT_NAME=$(basename $(pwd))
-sed -i "" "s/%NAME%/$FULL_NAME/g" ./package.json
-sed -i "" "s/%EMAIL%/$EMAIL/g" ./package.json
-sed -i "" "s/%PROJECT_NAME%/$PROJECT_NAME/g" ./package.json
+sed -i "" "s/__NAME__/$FULL_NAME/g" ./package.json
+sed -i "" "s/__EMAIL__/$EMAIL/g" ./package.json
+sed -i "" "s/__PROJECT_NAME__/$PROJECT_NAME/g" ./package.json
 
 if [[ $LICENSE_TYPE = "1" ]]; then
     cp LICENSE.mit LICENSE
@@ -91,9 +91,9 @@ fi
 
 if [[ $LICENSE_TYPE =~ ^[1-3]$ ]]; then
     YEAR=$(date +"%Y")
-    sed -i "" "s/%YEAR%/$YEAR/g" ./LICENSE
-    sed -i "" "s/%NAME%/$FULL_NAME/g" ./LICENSE
-    sed -i "" "s/%EMAIL%/$EMAIL/g" ./LICENSE
+    sed -i "" "s/__YEAR__/$YEAR/g" ./LICENSE
+    sed -i "" "s/__NAME__/$FULL_NAME/g" ./LICENSE
+    sed -i "" "s/__EMAIL__/$EMAIL/g" ./LICENSE
 fi
 
 echo "OK"

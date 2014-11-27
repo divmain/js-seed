@@ -1,8 +1,8 @@
 {
-  "name": "%PROJECT_NAME%",
+  "name": "__PROJECT_NAME__",
   "description": "",
   "version": "1.0.0",
-  "author": "%NAME% <%EMAIL%>",
+  "author": "__NAME__ <__EMAIL__>",
   "private": true,
   "dependencies": {},
   "devDependencies": {
