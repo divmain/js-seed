@@ -46,6 +46,7 @@ module.exports = {
       { test: /\.css$/, loader: "style-loader!css-loader" },
       { test: /\.styl$/, loader: "style-loader!css-loader!autoprefixer-loader!stylus-loader" },
       { test: /\.less$/, loader: "style-loader!css-loader!autoprefixer-loader!less-loader" },
+      { test: /\.scss$/, loader: "style-loader!css-loader!autoprefixer-loader!sass-loader" },
       { test: /\.tmpl$/, loader: "raw" }
     ]
   },

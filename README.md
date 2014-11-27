@@ -92,8 +92,9 @@ Before going any further, take a look at the tools that you have at your disposa
 - Libraries
     - [Lo-Dash](http://lodash.com) - utility library, an alternative to Underscore.js (this is used for the build and need not be used in your application)
 - CSS
-    - [LESS](http://lesscss.org/) - CSS pre-processor
     - [Stylus](http://learnboost.github.io/stylus/) - CSS pre-processor
+    - [LESS](http://lesscss.org/) - CSS pre-processor
+    - [SASS](http://sass-lang.com/) - CSS pre-processor; only SCSS syntax supported
     - [Autoprefixer](https://github.com/ai/autoprefixer) - automatic vendor prefix handling
 
 
@@ -140,19 +141,21 @@ By default, `frontend/styles/main.styl` is processed by Stylus and saved as `mai
 
 If you have files that are specific to a piece of your application, it may make sense to keep those styles in the same place as your application code.  From inside a JS file, you can require a `.styl` file (something like `require("./my-view.styl");`).  Those styles, including vendor prefixes, will be automatically loaded into the browser when the requiring JS module is loaded.
 
-### LESS
+### LESS / SCSS
 
-LESS is also supported.  Any `.less` files in the `frontend/styles/` directory will be compiled, vendor prefixes added, and outputted to the `frontend-dist/styles/` directory.
+Both LESS and SCSS are supported.  Any files in `frontend/styles` with extensions `.less` or `.scss` will be compiled by its respective preprocessor, augmented with vendor prefixes, and outputted to the `frontend-dist/styles/` directory.
 
-Similar to the Stylus support, LESS styles can be required in from your JavaScript modules, and they'll be automatically loaded into the browser.
+Similar to the Stylus support, LESS and SCSS styles can be required in from your JavaScript modules, and they'll be automatically loaded into the browser.
+
+At this time, only SCSS syntax is supported (SASS is not).  This is due to limitations in the [C++ SASS compiler](https://github.com/sass/libsass) and its JavaScript bindings.  If you prefer SASS syntax, I recommend taking a look at Stylus or wiring up the Ruby package.
 
 ### CSS
 
-Plain CSS is also supported.  Any `.css` files in the `frontend/styles/` directory will be run through Autoprefixer to add vendor-specific prefixes, and finally outputted to the `frontend-dist/styles/` directory.
+Any `.css` files in the `frontend/styles/` directory will be run through Autoprefixer to add vendor-specific prefixes, and finally outputted to the `frontend-dist/styles/` directory.
 
 ### A word of warning
 
-If for some reason you decide to mix CSS, LESS and SASS in your project, be sure to avoid naming conflicts.  `main.style`, `main.less` and `main.css` will all be processed and outputted as `main.css` in the `frontend-dist` directory.
+If for some reason you decide to mix CSS, LESS and SCSS in your project, be sure to avoid naming conflicts.  `main.styl`, `main.less`, `main.scss` and `main.css` will all be processed and outputted as `main.css` in the `frontend-dist` directory.
 
 
 ## Project Layout
