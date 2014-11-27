@@ -49,7 +49,7 @@ When working on a project, a lot of your time will be spent in the terminal runn
 You should see something like the following:
 
 ```text
-[21:18:38] Starting 'help'...
+[11:26:07] Starting 'help'...
 
 Usage
   gulp [task]
@@ -60,6 +60,7 @@ Available tasks
   build:css         Build CSS, Stylus & LESS --> CSS.
   build:css:css     Build and add vendor prefixes for plain CSS.
   build:css:less    Build and add vendor prefixes to LESS styles.
+  build:css:sass    Build and add vendor prefixes to SAS styles.
   build:css:stylus  Build and add vendor prefixes to Stylus styles.
   build:js          Build minified JS.
   build:js-dev      Build unminified JS with sourcemaps.
@@ -72,7 +73,7 @@ Available tasks
   test-watch        Run browser tests in console; run again on change.
   watch             Perform build-dev when sources change.
 
-[21:18:38] Finished 'help' after 1.58 ms
+[11:26:07] Finished 'help' after 1.41 ms
 ```
 
 
