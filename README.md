@@ -49,7 +49,7 @@ When working on a project, a lot of your time will be spent in the terminal runn
 You should see something like the following:
 
 ```text
-[20:55:44] Starting 'help'...
+[21:18:38] Starting 'help'...
 
 Usage
   gulp [task]
@@ -57,9 +57,10 @@ Usage
 Available tasks
   build             Copy assets, build CSS and JS.
   build-dev         Build, but with unminified JS + sourcemaps.
-  build:css         Build Stylus & LESS --> CSS.
-  build:css:less    Build LESS --> CSS.
-  build:css:stylus  Build Stylus --> CSS.
+  build:css         Build CSS, Stylus & LESS --> CSS.
+  build:css:css     Build and add vendor prefixes for plain CSS.
+  build:css:less    Build and add vendor prefixes to LESS styles.
+  build:css:stylus  Build and add vendor prefixes to Stylus styles.
   build:js          Build minified JS.
   build:js-dev      Build unminified JS with sourcemaps.
   help              Display this help text.
@@ -71,7 +72,7 @@ Available tasks
   test-watch        Run browser tests in console; run again on change.
   watch             Perform build-dev when sources change.
 
-[20:55:44] Finished 'help' after 1.13 ms
+[21:18:38] Finished 'help' after 1.58 ms
 ```
 
 
@@ -169,7 +170,7 @@ If for some reason you decide to mix CSS, LESS and SASS in your project, be sure
 | frontend/               | Application and test code.                                                                |
 | frontend/assets/        | Static files.                                                                             |
 | frontend/js/            | Application JS files.  Each `.js` has a `.spec.js` counterpart.                           |
-| frontend/styles/        | Stylus files.                                                                             |
+| frontend/styles/        | CSS, Stylus, and LESS files.                                                              |
 | frontend/test-runner.js | Configures and executes tests.                                                            |
 | frontend-dist/          | Builds are generated here.                                                                |
 | gulp-tasks/             | Component gulp tasks                                                                      |
