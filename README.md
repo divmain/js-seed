@@ -49,27 +49,29 @@ When working on a project, a lot of your time will be spent in the terminal runn
 You should see something like the following:
 
 ```text
-[23:19:40] Starting 'help'...
+[20:55:44] Starting 'help'...
 
 Usage
   gulp [task]
 
 Available tasks
-  build          Copy assets, build CSS and JS.
-  build-dev      Build, but with unminified JS + sourcemaps.
-  build:css      Build CSS.
-  build:js       Build minified JS.
-  build:js-dev   Build unminified JS with sourcemaps.
-  help           Display this help text.
-  lint           Lint application- and test-code.
-  test           Run unit tests in the browser.
-  test-coverage  Run browser unit tests in the console.
-  test-karma     Auto-run unit tests in multiple browsers.
-  test-phantom   Run browser unit tests in the console.
-  test-watch     Run browser tests in console; run again on change.
-  watch          Perform build-dev when sources change.
+  build             Copy assets, build CSS and JS.
+  build-dev         Build, but with unminified JS + sourcemaps.
+  build:css         Build Stylus & LESS --> CSS.
+  build:css:less    Build LESS --> CSS.
+  build:css:stylus  Build Stylus --> CSS.
+  build:js          Build minified JS.
+  build:js-dev      Build unminified JS with sourcemaps.
+  help              Display this help text.
+  lint              Lint application- and test-code.
+  test              Run unit tests in the browser.
+  test-coverage     Run browser unit tests in the console.
+  test-karma        Auto-run unit tests in multiple browsers.
+  test-phantom      Run browser unit tests in the console.
+  test-watch        Run browser tests in console; run again on change.
+  watch             Perform build-dev when sources change.
 
-[23:19:40] Finished 'help' after 1.48 ms
+[20:55:44] Finished 'help' after 1.13 ms
 ```
 
 
@@ -89,7 +91,8 @@ Before going any further, take a look at the tools that you have at your disposa
 - Libraries
     - [Lo-Dash](http://lodash.com) - utility library, an alternative to Underscore.js (this is used for the build and need not be used in your application)
 - CSS
-    - [Stylus](http://learnboost.github.io/stylus/) - expressive CSS pre-processor
+    - [LESS](http://lesscss.org/) - CSS pre-processor
+    - [Stylus](http://learnboost.github.io/stylus/) - CSS pre-processor
     - [Autoprefixer](https://github.com/ai/autoprefixer) - automatic vendor prefix handling
 
 
@@ -123,13 +126,33 @@ As a project grows, and especially when multiple developers contribute, it becom
 To check your code for non-compliance with the code style, as well as running sanity checks for common problems, use `gulp lint`.  If all your code passes, you'll see a `[lint] SUCCESS!` message.  Any problems that are found will be specifically pointed out, followed by `*** FAILED ESLINT ***`.
 
 
-## Pulling in Templates or Styles
+## Pulling in Templates
 
-As a convenience, this seed project provides easy mechanisms to write templates and CSS styles.  By default, `frontend/styles/main.styl` is processed by Stylus and saved as `main.css` in the output directory.  From inside a JS file, you can also require a module-specific Stylus file (something like `require("./my-view.styl");`), and those styles will automatically be loaded into the browser when the requiring JS module is loaded.
+Webpack supplies a mechanism to require files as plain text.  This is a convenient way to access templates.  It should look something like `var myTemplateString = require("./my-template.tmpl");`.  By default, this special behavior only works for files with extension `.tmpl`, but new rules can be created in `webpack.config.js`.
 
-The Webpack configuration also supplies a mechanism to require files as plain text.  This is very useful for accessing templates.  It'll look something like `var myTemplateString = require("./my-template.tmpl");`.  By default, this only works for files with extension `.tmpl`, but new rules can be created in `webpack.config.js`.
 
-Keep in mind that while Stylus support is provided out-of-the-box, plain CSS is also supported.  I'm actively looking into adding support for LESS/SASS alongside Stylus.
+## Pulling in Styles
+
+### Stylus
+
+By default, `frontend/styles/main.styl` is processed by Stylus and saved as `main.css` in the output directory.  Any other `.styl` files in this directory will be compiled, vendor prefixes added, and outputted to the `frontend-dist/styles/` directory.
+
+If you have files that are specific to a piece of your application, it may make sense to keep those styles in the same place as your application code.  From inside a JS file, you can require a `.styl` file (something like `require("./my-view.styl");`).  Those styles, including vendor prefixes, will be automatically loaded into the browser when the requiring JS module is loaded.
+
+### LESS
+
+LESS is also supported.  Any `.less` files in the `frontend/styles/` directory will be compiled, vendor prefixes added, and outputted to the `frontend-dist/styles/` directory.
+
+Similar to the Stylus support, LESS styles can be required in from your JavaScript modules, and they'll be automatically loaded into the browser.
+
+### CSS
+
+Plain CSS is also supported.  Any `.css` files in the `frontend/styles/` directory will be run through Autoprefixer to add vendor-specific prefixes, and finally outputted to the `frontend-dist/styles/` directory.
+
+### A word of warning
+
+If for some reason you decide to mix CSS, LESS and SASS in your project, be sure to avoid naming conflicts.  `main.style`, `main.less` and `main.css` will all be processed and outputted as `main.css` in the `frontend-dist` directory.
+
 
 ## Project Layout
 
