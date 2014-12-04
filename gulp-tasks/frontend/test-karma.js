@@ -42,7 +42,7 @@ gulp.task("test-coverage", "Run browser unit tests in the console.", function (d
   var karmaConf = _.cloneDeep(karmaConfig);
 
   karmaConf.webpack.module.postLoaders = [{
-    test: /\.js$/,
+    test: /^(?:(?!\.spec\.js$).)*\.js$/,
     exclude: /(spec|node_modules)\//,
     loader: "istanbul-instrumenter"
   }];
