@@ -104,7 +104,7 @@ echo -n "initializing git... "
 
 git init > /dev/null
 git add . > /dev/null
-git commit -m "initial commit" > /dev/null
+git commit -m "initial commit from github.com/divmain/js-seed" > /dev/null
 
 echo "OK"
 
