@@ -1,5 +1,7 @@
 var _ = require("lodash");
 
+var specFileRequire, fixturesEl;
+
 /**
  * This is the Webpack voo-doo that makes it so easy to add spec
  * files.  It will recursively traverse the current directory,
@@ -12,7 +14,7 @@ var _ = require("lodash");
  *   71f80252750e1d8f4b6b40395855e0dd5cca6d12#requirecontext
  */
 
-var specFileRequire = require.context(".", true, /\.spec\.js$/);
+specFileRequire = require.context(".", true, /\.spec\.js$/);
 
 /**
  * Object.keys is used by require.context for its `keys` method.
@@ -30,7 +32,7 @@ if (!Object.keys) {
  * your views, they can be mounted here.
  */
 
-var fixturesEl = document.createElement("div");
+fixturesEl = document.createElement("div");
 fixturesEl.setAttribute("id", "fixtures");
 document.querySelector("body").appendChild(fixturesEl);
 fixturesEl.style.position = "absolute";
