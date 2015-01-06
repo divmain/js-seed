@@ -1,15 +1,15 @@
 var path = require("path");
 
 module.exports = {
-  src: "frontend",
-  dest: "frontend-dist",
-  srcFullPath: path.join(__dirname, "frontend"),
-  destFullPath: path.join(__dirname, "frontend-dist"),
+  src: "src",
+  dest: "dist",
+  srcFullPath: path.join(__dirname, "src"),
+  destFullPath: path.join(__dirname, "dist"),
   root: __dirname,
 
   js: "js",
   assets: "assets",
   styles: "styles",
-  testRunner: "frontend/test-runner.js",
+  testRunner: "src/test-runner.js",
   karmaConfig: "karma.conf.js"
 };

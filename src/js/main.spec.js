@@ -7,7 +7,7 @@ var main = require("./main");
  * it disambiguates tests that may otherwise look similar.
  */
 
-describe("frontend/js/", function () {
+describe("src/js/", function () {
   describe("main", function () {
     var sandbox;
 
@@ -36,7 +36,7 @@ describe("frontend/js/", function () {
     it("should always return true", function () {
 
       /**
-       * We are describing "frontend/js/main", and asserting that it
+       * We are describing "src/js/main", and asserting that it
        * will always return true.
        */
 
