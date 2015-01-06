@@ -1,15 +1,15 @@
 var path = require("path");
 
-module.exports = {
-  src: "src",
-  dest: "dist",
-  srcFullPath: path.join(__dirname, "src"),
-  destFullPath: path.join(__dirname, "dist"),
-  root: __dirname,
+var config = module.exports = {};
 
-  js: "js",
-  assets: "assets",
-  styles: "styles",
-  testRunner: "src/test-runner.js",
-  karmaConfig: "karma.conf.js"
-};
+config.root = __dirname;
+config.src = "src";
+config.dest = "dist";
+config.srcFullPath = path.join(config.root, config.src);
+config.destFullPath = path.join(config.root, config.dest);
+
+config.js = "js";
+config.assets = "assets";
+config.styles = "styles";
+config.karmaConfig = "karma.conf.js";
+config.testRunner = path.join(config.src, "test-runner.js");
