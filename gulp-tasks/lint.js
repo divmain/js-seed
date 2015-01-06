@@ -15,7 +15,7 @@ gulp.task("lint", "Lint application- and test-code.", function (cb) {
   var success = true;
 
   gulp.src([
-    path.join(config.frontendFullPath, "**/*.js"),
+    path.join(config.srcFullPath, "**/*.js"),
     path.join(config.root, "*.js"),
     path.join(config.root, "gulp-tasks/**/*.js")
   ])

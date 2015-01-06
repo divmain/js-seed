@@ -9,7 +9,7 @@ var
 
 gulp.task("copy", false, function () {
   return gulp.src(
-    path.join(config.frontendFullPath, config.assets, "**/*"),
-    { base: path.join(config.frontendFullPath, config.assets) }
+    path.join(config.srcFullPath, config.assets, "**/*"),
+    { base: path.join(config.srcFullPath, config.assets) }
   ).pipe(gulp.dest(config.destFullPath));
 });

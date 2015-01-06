@@ -8,7 +8,7 @@ var
   config = require("./project.config");
 
 module.exports = {
-  context: config.frontendFullPath,
+  context: config.srcFullPath,
 
   /**
    * Based on the configuration below, a `main.bundle.js` file will be generated

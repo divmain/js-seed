@@ -26,5 +26,5 @@ gulp.task("build-dev", "Build, but with unminified JS + sourcemaps.", ["frontend
 );
 
 gulp.task("watch", "Perform build-dev when sources change.", ["build-dev"], function () {
-  gulp.watch(path.join(config.frontendFullPath, "**/*"), ["build-dev"]);
+  gulp.watch(path.join(config.srcFullPath, "**/*"), ["build-dev"]);
 });

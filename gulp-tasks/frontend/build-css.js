@@ -19,13 +19,13 @@ gulp.task("build:css", "Build CSS, Stylus & LESS --> CSS.", [
 ]);
 
 gulp.task("build:css:css", "Build and add vendor prefixes for plain CSS.", function () {
-  return gulp.src(path.join(config.frontendFullPath, config.styles, "*.css"))
+  return gulp.src(path.join(config.srcFullPath, config.styles, "*.css"))
     .pipe(prefix("last 1 version", "> 1%", "ie 8"))
     .pipe(gulp.dest(path.join(config.destFullPath, "styles")));
 });
 
 gulp.task("build:css:stylus", "Build and add vendor prefixes to Stylus styles.", function () {
-  return gulp.src(path.join(config.frontendFullPath, config.styles, "*.styl"))
+  return gulp.src(path.join(config.srcFullPath, config.styles, "*.styl"))
     .pipe(stylus({
       set: ["compress"],
       define: { "ie8": true }
@@ -35,14 +35,14 @@ gulp.task("build:css:stylus", "Build and add vendor prefixes to Stylus styles.",
 });
 
 gulp.task("build:css:less", "Build and add vendor prefixes to LESS styles.", function () {
-  return gulp.src(path.join(config.frontendFullPath, config.styles, "*.less"))
+  return gulp.src(path.join(config.srcFullPath, config.styles, "*.less"))
     .pipe(less())
     .pipe(prefix("last 1 version", "> 1%", "ie 8"))
     .pipe(gulp.dest(path.join(config.destFullPath, "styles")));
 });
 
 gulp.task("build:css:sass", "Build and add vendor prefixes to SAS styles.", function () {
-  return gulp.src(path.join(config.frontendFullPath, config.styles, "*.scss"))
+  return gulp.src(path.join(config.srcFullPath, config.styles, "*.scss"))
     .pipe(sass())
     .pipe(prefix("last 1 version", "> 1%", "ie 8"))
     .pipe(gulp.dest(path.join(config.destFullPath, "styles")));
