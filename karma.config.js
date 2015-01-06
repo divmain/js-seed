@@ -1,20 +1,25 @@
 var
+  path = require("path");
+
+var
   _ = require("lodash");
 
 var
   projectConfig = require("./project.config"),
   webpackConfig = require("./webpack.dev.config");
 
-webpackConfig = _.clone(webpackConfig);
+var preprocessors = {};
+preprocessors[path.join(projectConfig.src, "**/*.js")] = ["webpack"];
 
+webpackConfig = _.clone(webpackConfig);
 delete webpackConfig.entry;
 
 module.exports = {
   basePath: projectConfig.root,
   frameworks: ["mocha"],
-  files: [ "frontend/test-runner.js" ],
+  files: [ projectConfig.testRunner ],
   exclude: [],
-  preprocessors: { "frontend/**/*.js": ["webpack"] },
+  preprocessors: preprocessors,
   webpack: webpackConfig,
   webpackServer: {
     hot: true,
