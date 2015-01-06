@@ -11,13 +11,13 @@ gulp.task("default", false, function () {
   gulp.tasks.help.fn();
 });
 
-gulp.task("build", "Copy assets, build CSS and JS.", ["frontend-clean"], function () {
+gulp.task("build", "Copy assets, build CSS and JS.", ["clean"], function () {
   gulp.run("copy");
   gulp.run("build:css");
   gulp.run("build:js");
 });
 
-gulp.task("build-dev", "Build, but with unminified JS + sourcemaps.", ["frontend-clean"],
+gulp.task("build-dev", "Build, but with unminified JS + sourcemaps.", ["clean"],
   function () {
     gulp.run("copy");
     gulp.run("build:css");
