@@ -53,6 +53,16 @@ window.chai.use(require("sinon-chai"));
  * Requires in all spec files.  See above comment.
  */
 
-_.each(specFileRequire.keys(), function (specFileName) {
+function wrapInDescribes(remainingPathComponents, specFileName) {
+  if (remainingPathComponents.length !== 0) {
+    describe(remainingPathComponents[0], function () {
+      wrapInDescribes(remainingPathComponents.slice(1), specFileName);
+    });
+  }
   specFileRequire(specFileName);
+}
+
+_.each(specFileRequire.keys(), function (specFileName) {
+  var pathToModule = "src/" + specFileName.replace(/^(\.\/)+/, "").replace(/(\.spec\.js)$/, "");
+  wrapInDescribes(pathToModule.split("/"), specFileName);
 });

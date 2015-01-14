@@ -1,59 +1,47 @@
 var main = require("./main");
+var sandbox;
 
-/**
- * We recommend that you wrap all of your tests in `describe` blocks
- * that correspond to the path of the file that you are testing.  This
- * makes it easy to find the file in question when a test fails, and
- * it disambiguates tests that may otherwise look similar.
- */
+beforeEach(function () {
 
-describe("src/js/", function () {
-  describe("main", function () {
-    var sandbox;
+  /**
+   * Before each test is run, create a new Sinon sandbox that
+   * can be used for stubbing and spying on our application code.
+   */
 
-    beforeEach(function () {
+  sandbox = sinon.sandbox.create();
+});
 
-      /**
-       * Before each test is run, create a new Sinon sandbox that
-       * can be used for stubbing and spying on our application code.
-       */
+afterEach(function () {
 
-      sandbox = sinon.sandbox.create();
-    });
+  /**
+   * If you use `sinon.stub` or `sinon.spy` instead of the sandbox
+   * pattern, make sure to restore them here!  If you don't, the
+   * functionality of the stubbed/spied-upon functions will remain
+   * altered, and you could unintentionally break other tests.
+   */
 
-    afterEach(function () {
+  sandbox.restore();
+});
 
-      /**
-       * If you use `sinon.stub` or `sinon.spy` instead of the sandbox
-       * pattern, make sure to restore them here!  If you don't, the
-       * functionality of the stubbed/spied-upon functions will remain
-       * altered, and you could unintentionally break other tests.
-       */
+it("should always return true", function () {
 
-      sandbox.restore();
-    });
+  /**
+   * We are describing "src/js/main", and asserting that it
+   * will always return true.
+   */
 
-    it("should always return true", function () {
+  expect(main()).to.be.true;
+});
 
-      /**
-       * We are describing "src/js/main", and asserting that it
-       * will always return true.
-       */
+it("should call the provided function with `false`", function () {
 
-      expect(main()).to.be.true;
-    });
+  /**
+   * Chai provides a whole host of assertions.  Check the documentation
+   * for a full list.  In addition to those, the seed project includes
+   * sinon-chai, which adds assertions related to sinon stubs and spies.
+   */
 
-    it("should call the provided function with `false`", function () {
-
-      /**
-       * Chai provides a whole host of assertions.  Check the documentation
-       * for a full list.  In addition to those, the seed project includes
-       * sinon-chai, which adds assertions related to sinon stubs and spies.
-       */
-
-      var testFn = sandbox.spy();
-      main(testFn);
-      expect(testFn).to.have.been.calledWith(false);
-    });
-  });
+  var testFn = sandbox.spy();
+  main(testFn);
+  expect(testFn).to.have.been.calledWith(false);
 });
