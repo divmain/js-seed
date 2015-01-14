@@ -63,6 +63,6 @@ function wrapInDescribes(remainingPathComponents, specFileName) {
 }
 
 _.each(specFileRequire.keys(), function (specFileName) {
-  var pathToModule = "src/" + specFileName.replace(/^(\.\/)+/, "").replace(/(\.spec\.js)$/, "");
+  var pathToModule = specFileName.replace(/^(\.\/)+/, "").replace(/(\.spec\.js)$/, "");
   wrapInDescribes(pathToModule.split("/"), specFileName);
 });
