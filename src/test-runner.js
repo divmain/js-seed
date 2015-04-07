@@ -27,6 +27,30 @@ if (!Object.keys) {
 }
 
 /**
+ * Some of the webpack plug-ins may rely on native `bind`, and
+ * PhantomJS does not include it.  Polyfill!
+ */
+
+if (typeof Function.prototype.bind !== "function") {
+  /* eslint-disable no-extend-native */
+  Function.prototype.bind = function bind(obj) {
+  /* eslint-enable no-extend-native */
+    var args = Array.prototype.slice.call(arguments, 1);
+    var self = this;
+    var NoOp = function () {};
+    var bound = function () {
+      return self.apply(
+        this instanceof NoOp ? this : obj || {},
+        args.concat(Array.prototype.slice.call(arguments))
+      );
+    };
+    NoOp.prototype = this.prototype || {};
+    bound.prototype = new NoOp();
+    return bound;
+  };
+}
+
+/**
  * This creates a DOM element with ID "fixtures".  It is visible,
  * but far off to the left of the viewable screen.  When testing
  * your views, they can be mounted here.
