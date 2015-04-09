@@ -19,6 +19,14 @@ read -r -p "selection: " -n 1 LICENSE_TYPE
 echo
 echo
 
+echo "which code style would you prefer to use?"
+echo " (1) default"
+echo " (2) Airbnb"
+read -r -p "selection: " -n 1 CODE_STYLE
+echo
+echo
+
+
 read -r -p "would you like to create a new remote repo (y/n)? " -n 1 DO_REMOTE
 echo
 if [[ $DO_REMOTE =~ ^[Yy]$ ]]; then
@@ -94,6 +102,13 @@ if [[ $LICENSE_TYPE =~ ^[1-3]$ ]]; then
     sed -i "" "s/__YEAR__/$YEAR/g" ./LICENSE
     sed -i "" "s/__NAME__/$FULL_NAME/g" ./LICENSE
     sed -i "" "s/__EMAIL__/$EMAIL/g" ./LICENSE
+fi
+
+if [[ $CODE_STYLE = "1" ]]; then
+    rm .eslintrc.airbnb
+elif [[ $CODE_STYLE = "2" ]]; then
+    rm .eslintrc
+    mv .eslintrc.airbnb .eslintrc
 fi
 
 echo "OK"
