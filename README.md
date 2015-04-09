@@ -124,7 +124,7 @@ Finally, you can try something more interactive.  Run `gulp test`.  A browser wi
 
 ## Linting Your Code
 
-As a project grows, and especially when multiple developers contribute, it becomes increasingly valuable to enforce a particular code style.  This seed project provides a default code style configuration.  Feel free to modify it to fit your preferences (`.eslintrc`); the most important thing is consistency across the project.
+As a project grows, and especially when multiple developers contribute, it becomes increasingly valuable to enforce a particular code style.  This seed project provides a default code style configuration.  You can also select an style configuration that conforms to the Airbnb style guide.  Feel free to inspect and modify `.eslintrc` to fit your preferences; the most important thing is consistency across your project.
 
 To check your code for non-compliance with the code style, as well as running sanity checks for common problems, use `gulp lint`.  If all your code passes, you'll see a `[lint] SUCCESS!` message.  Any problems that are found will be specifically pointed out, followed by `*** FAILED ESLINT ***`.
 
