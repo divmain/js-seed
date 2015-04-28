@@ -45,6 +45,14 @@ if [[ $DO_REMOTE =~ ^[Yy]$ ]]; then
 fi
 echo
 
+read -r -p "would you like to reset Git history (y/n)? " -n NUKE_GIT
+if [[ $NUKE_GIT =~ ^[Yy]$ ]]; then
+    NUKE_GIT=true
+else
+    NUKE_GIT=false
+fi
+echo
+
 echo "which continuous integration service will you be using?"
 echo " (1) travis-ci.com"
 echo " (2) wercker.com"
@@ -61,7 +69,9 @@ echo -n "cleaning up... "
 rm -f $CURRENTDIR/start.sh
 rm -f $CURRENTDIR/README.md
 rm -f $CURRENTDIR/LICENSE
-rm -rf $CURRENTDIR/.git
+if $NUKE_GIT; then
+    rm -rf $CURRENTDIR/.git
+fi
 
 echo "OK"
 
@@ -117,7 +127,9 @@ echo "OK"
 
 echo -n "initializing git... "
 
-git init > /dev/null
+if $NUKE_GIT; then
+    git init > /dev/null 
+fi
 git add . > /dev/null
 git commit -m "initial commit from github.com/divmain/js-seed" > /dev/null
 
