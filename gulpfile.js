@@ -2,6 +2,7 @@ var
   gulp = require("gulp"),
   gulpHelp = require("gulp-help"),
   requireDir = require("require-dir");
+  requireDir = require("require-dir3");
 
 /**
  * This modifies the `gulp.task` function to take an additional argument.
