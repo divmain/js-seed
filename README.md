@@ -85,7 +85,7 @@ Before going any further, take a look at the tools that you have at your disposa
     - [gulp](http://gulpjs.com/) - a task runner and build tool
     - [webpack](http://webpack.github.io/) - a module bundler that accepts/outputs CommonJS/AMD/UMD
 - Tests
-    - [mocha](http://visionmedia.github.io/mocha/) - test framework
+    - [mocha](http://mochajs.org/) - test framework
     - [Chai](http://chaijs.com/) - assertion framework
     - [Sinon.JS](http://sinonjs.org) - spies, stubs, and mocks
     - [Karma](http://karma-runner.github.io/) - automated testing in multiple browsers (Chrome, Firefox, Sarafi enabled by default) and in the console
